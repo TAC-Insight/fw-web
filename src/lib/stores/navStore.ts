@@ -3,6 +3,17 @@ import { writable } from 'svelte/store';
 
 interface NavStore {
 	isNavOpen?: boolean;
+	isResourcesOpen?: boolean;
+	isTrucksOpen?: boolean;
+	isQuotesOpen?: boolean;
+	isOrdersOpen?: boolean;
+	isDispatchOpen?: boolean;
+	isInYardOpen?: boolean;
+	isTicketsOpen?: boolean;
+	isBillingOpen?: boolean;
+	isHaulerPayOpen?: boolean;
+	isReportingOpen?: boolean;
+	isIntegrationsOpen?: boolean;
 }
 
 export const navStore = writable<NavStore>(

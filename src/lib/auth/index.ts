@@ -12,4 +12,5 @@ export const requireAuth = async () => {
 		}
 		throw redirect(307, '/auth/sign-in');
 	}
+	return session;
 };

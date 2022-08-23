@@ -1,23 +1,79 @@
 <script lang="ts">
 	import { navStore } from '$lib/stores/navStore';
 	import { sessionStore } from '$lib/stores/sessionStore';
+	import { isCommandPaletteOpen } from '$lib/stores/commandPaletteStore';
 	import Logo from '$lib/assets/logo.png';
+	import MenuIcon from './icons/MenuIcon.svelte';
+	import { fly } from 'svelte/transition';
+	import SearchIcon from './icons/SearchIcon.svelte';
+	import ChevronDoubleUpIcon from './icons/ChevronDoubleUpIcon.svelte';
+	import SideNavMenuItems from './SideNavMenuItems.svelte';
 </script>
 
-<nav
-	class="flex max-h-screen w-56 flex-col overflow-auto bg-gradient-to-tr from-gray-300 to-slate-300 p-2"
->
-	<section class="flex flex-row space-x-1">
-		<img src={Logo} height={24} width={24} alt="FW Logo" />
-		<h1 class="font-bold">Fast-Weigh</h1>
-		<div class="flex-grow" />
+{#if !$navStore.isNavOpen}
+	<section class="ml-1 mt-1">
 		<button
 			class="rounded-full bg-slate-200 p-1"
 			on:click={() => {
-				//
+				$navStore.isNavOpen = true;
 			}}
 		>
-			close
+			<MenuIcon class="h-4 w-4" />
 		</button>
 	</section>
-</nav>
+{:else}
+	<nav
+		class="flex max-h-screen w-56 flex-col overflow-auto bg-gradient-to-tr from-gray-300 to-slate-300 p-2"
+		in:fly={{ x: -100, duration: 200 }}
+		out:fly={{ x: -100, duration: 200 }}
+	>
+		<!-- Header -->
+		<section class="flex flex-row space-x-1">
+			<img src={Logo} class="h-6 w-6" alt="FW Logo" />
+			<h1 class="font-bold">Fast-Weigh</h1>
+			<div class="flex-grow" />
+			<button
+				class="rounded-full bg-slate-200 p-1"
+				on:click={() => {
+					$navStore.isNavOpen = false;
+				}}
+			>
+				<MenuIcon class="h-4 w-4" />
+			</button>
+		</section>
+		<!-- Command Palette -->
+		<section>
+			<div
+				on:click={() => {
+					$isCommandPaletteOpen = true;
+				}}
+				class="mt-2 flex cursor-pointer flex-row items-center justify-center space-x-1 rounded bg-slate-500/10 p-2 text-xs font-semibold hover:opacity-50"
+			>
+				<SearchIcon class="h-4 w-4" />
+				<div class="mr-1">Press</div>
+				<div class="rounded bg-slate-100 px-1 font-mono shadow-xl ring-1 ring-slate-900/20">
+					Ctrl
+				</div>
+				<div class="mx-1">+</div>
+				<div class="rounded bg-slate-100 px-1 font-mono shadow-xl ring-1 ring-slate-900/20">/</div>
+				<div class="ml-1">to search</div>
+			</div>
+		</section>
+
+		<!-- Close all menu items -->
+		<section>
+			<button
+				on:click={() => {
+					$navStore = { isNavOpen: true };
+				}}
+				class="mt-2 flex cursor-pointer flex-row items-center justify-center space-x-1 rounded bg-slate-500/10 p-2 text-xs font-semibold hover:opacity-50 w-full"
+			>
+				<ChevronDoubleUpIcon class="h-4 w-4" />
+				<span>Close all menus</span>
+			</button>
+		</section>
+
+		<!-- Menu items -->
+		<SideNavMenuItems />
+	</nav>
+{/if}

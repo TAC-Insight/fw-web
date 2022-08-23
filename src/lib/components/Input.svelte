@@ -1,7 +1,8 @@
 <script lang="ts">
 	export let type: 'text' | 'password' = 'text';
 	export let value: string | number = '';
-	export let label: string;
+	export let label: string = '';
+	export let placeholder: string = '';
 	export let required: boolean = false;
 	export let autoFocus: boolean = false;
 
@@ -11,9 +12,11 @@
 	}
 </script>
 
-<label for={id} class="text-sm font-semibold">
-	{label}
-	{#if required}<span class="text-red-500">*</span>{/if}
-</label>
+{#if label}
+	<label for={id} class="text-sm font-semibold">
+		{label}
+		{#if required}<span class="text-red-500">*</span>{/if}
+	</label>
+{/if}
 <!-- svelte-ignore a11y-autofocus -->
-<input {id} {type} {autoFocus} on:input={handleInput} class="rounded p-1" />
+<input {id} {type} {placeholder} {autoFocus} on:input={handleInput} class="rounded p-1" />

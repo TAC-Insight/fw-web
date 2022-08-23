@@ -3,4 +3,6 @@
 </script>
 
 <h1>Home</h1>
-{JSON.stringify($sessionStore)}
+<pre>
+	{JSON.stringify($sessionStore, null, 2)}
+</pre>
