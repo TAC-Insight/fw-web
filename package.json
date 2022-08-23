@@ -17,7 +17,7 @@
 		"@playwright/test": "^1.25.0",
 		"@sveltejs/adapter-auto": "1.0.0-next.65",
 		"@sveltejs/adapter-static": "1.0.0-next.39",
-		"@sveltejs/kit": "1.0.0-next.429",
+		"@sveltejs/kit": "1.0.0-next.431",
 		"@tailwindcss/forms": "^0.5.2",
 		"@tailwindcss/typography": "^0.5.4",
 		"@types/nprogress": "^0.2.0",

@@ -6,7 +6,7 @@
 
 ### Built with...
 
-- [SvelteKit](https://kit.svelte.dev) & [the static adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-static)
+- [SvelteKit](https://kit.svelte.dev) & [the auto adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-auto)
 - [TailwindCSS](https://tailwindcss.com/)
 
 ### Hosted on...
