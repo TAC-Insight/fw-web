@@ -17,7 +17,9 @@ interface NavStore {
 }
 
 export const navStore = writable<NavStore>(
-	JSON.parse(browser ? localStorage.getItem('navStore') ?? '{}' : '{}')
+	JSON.parse(
+		browser ? localStorage.getItem('navStore') ?? '{"isNavOpen": true}' : '{"isNavOpen": true}'
+	)
 );
 
 if (browser) {
