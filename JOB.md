@@ -53,7 +53,7 @@ We maintain a web app, native desktop app, and 2 iOS/Android apps that all work 
 
 - Work remotely or in our HQ (Knoxville, TN).
 - No relocation stipend will be offered.
-- Your time zone (or work availability) must overlap with at least 4 hours of 8am-5pm in Knoxville, TN.
+- Your time zone (or work availability) must overlap with at least 4 hours of 8am-5pm in Knoxville, TN. (ET)
 
 ### Compensation
 
