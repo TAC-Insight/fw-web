@@ -31,7 +31,7 @@ We have ~20 employees. Of those ~20, 4 are on the dev team.
 1 frontend / integrations / product lead
 1 CTO / PM
 
-We're bootstrapped and profitable and plan on being around for a long time.
+This is not a typical grind-it-out startup job. We're bootstrapped, profitable, maintain reasonable work/life balance expectations, and plan on being around for a long time.
 
 ## About Fast-Weigh
 
