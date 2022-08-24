@@ -18,6 +18,8 @@ You will be responsible for everything within this frontend application (code, d
 
 This is a rewrite of a quite large application. ~100 screens with lots and lots of components and authorization logic.
 
+You will be encouraged to open source components as much as you possibly can to contribute back to the Svelte ecosystem.
+
 ## About TAC Insight
 
 TAC Insight is the company's name. We make Fast-Weigh (and a couple of other things but Fast-Weigh is all you'll be involved in).
@@ -62,7 +64,7 @@ We maintain a web app, native desktop app, and 2 iOS/Android apps that all work 
 
 ### How to apply
 
-Email:
+Email with subject: "Svelte/TS Dev"
 
 Eric Wilhite (Fast-Weigh's Head of Product)
 
