@@ -1,10 +1,10 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@playwright/test': ^1.25.0
+  '@playwright/test': ^1.25.1
   '@sveltejs/adapter-auto': 1.0.0-next.65
   '@sveltejs/adapter-static': 1.0.0-next.39
-  '@sveltejs/kit': 1.0.0-next.431
+  '@sveltejs/kit': 1.0.0-next.432
   '@tailwindcss/forms': ^0.5.2
   '@tailwindcss/typography': ^0.5.4
   '@types/nprogress': ^0.2.0
@@ -31,10 +31,10 @@ dependencies:
   nprogress: 0.2.0
 
 devDependencies:
-  '@playwright/test': 1.25.0
+  '@playwright/test': 1.25.1
   '@sveltejs/adapter-auto': 1.0.0-next.65
   '@sveltejs/adapter-static': 1.0.0-next.39
-  '@sveltejs/kit': 1.0.0-next.431_svelte@3.49.0+vite@3.0.9
+  '@sveltejs/kit': 1.0.0-next.432_svelte@3.49.0+vite@3.0.9
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
   '@types/nprogress': 0.2.0
@@ -179,13 +179,13 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@playwright/test/1.25.0:
-    resolution: {integrity: sha512-j4EZhTTQI3dBeWblE21EV//swwmBtOpIrLdOIJIRv4uqsLdHgBg1z+JtTg+AeC5o2bAXIE26kDNW5A0TimG8Bg==}
+  /@playwright/test/1.25.1:
+    resolution: {integrity: sha512-IJ4X0yOakXtwkhbnNzKkaIgXe6df7u3H3FnuhI9Jqh+CdO0e/lYQlDLYiyI9cnXK8E7UAppAWP+VqAv6VX7HQg==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      '@types/node': 18.7.9
-      playwright-core: 1.25.0
+      '@types/node': 18.7.13
+      playwright-core: 1.25.1
     dev: true
 
   /@polka/url/1.0.0-next.21:
@@ -242,8 +242,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.431_svelte@3.49.0+vite@3.0.9:
-    resolution: {integrity: sha512-kK3FCw0cBB/nqjgV8G9W5ctDxemQpkqxidsKVr3aEXSExm4mdM3MYgNf6y2OuvOH9zLD+/t6DAxQQC/RPxuz8Q==}
+  /@sveltejs/kit/1.0.0-next.432_svelte@3.49.0+vite@3.0.9:
+    resolution: {integrity: sha512-weGruEorXX2QJ+OoXbm46snqAaEtJOuSKP5G9VLTa5Ae2pBZE+6N2wWxvgP/iE1r7+9jlrdIyntvxGX0US6GYw==}
     engines: {node: '>=16.9'}
     hasBin: true
     requiresBuild: true
@@ -263,7 +263,7 @@ packages:
       sirv: 2.0.2
       svelte: 3.49.0
       tiny-glob: 0.2.9
-      undici: 5.9.1
+      undici: 5.10.0
       vite: 3.0.9
     transitivePeerDependencies:
       - diff-match-patch
@@ -317,8 +317,8 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
-  /@types/node/18.7.9:
-    resolution: {integrity: sha512-0N5Y1XAdcl865nDdjbO0m3T6FdmQ4ijE89/urOHLREyTXbpMWbSafx9y7XIsgWGtwUP2iYTinLyyW3FatAxBLQ==}
+  /@types/node/18.7.13:
+    resolution: {integrity: sha512-46yIhxSe5xEaJZXWdIBP7GU4HDTG8/eo0qd9atdiL+lFpA03y8KS+lkTN834TWJj5767GbWv4n/P6efyTFt1Dw==}
     dev: true
 
   /@types/nprogress/0.2.0:
@@ -332,7 +332,7 @@ packages:
   /@types/sass/1.43.1:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
     dependencies:
-      '@types/node': 18.7.9
+      '@types/node': 18.7.13
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.34.0_euudt5oqhhodkyae5tf6wjmsda:
@@ -1862,8 +1862,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /playwright-core/1.25.0:
-    resolution: {integrity: sha512-kZ3Jwaf3wlu0GgU0nB8UMQ+mXFTqBIFz9h1svTlNduNKjnbPXFxw7mJanLVjqxHJRn62uBfmgBj93YHidk2N5Q==}
+  /playwright-core/1.25.1:
+    resolution: {integrity: sha512-lSvPCmA2n7LawD2Hw7gSCLScZ+vYRkhU8xH0AapMyzwN+ojoDqhkH/KIEUxwNu2PjPoE/fcE0wLAksdOhJ2O5g==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -2414,8 +2414,8 @@ packages:
     dev: true
     optional: true
 
-  /undici/5.9.1:
-    resolution: {integrity: sha512-6fB3a+SNnWEm4CJbgo0/CWR8RGcOCQP68SF4X0mxtYTq2VNN8T88NYrWVBAeSX+zb7bny2dx2iYhP3XHi00omg==}
+  /undici/5.10.0:
+    resolution: {integrity: sha512-c8HsD3IbwmjjbLvoZuRI26TZic+TSEe8FPMLLOkN1AfYRhdjnKBU6yL+IwcSCbdZiX4e5t0lfMDLDCqj4Sq70g==}
     engines: {node: '>=12.18'}
     dev: true
 
