@@ -1,4 +1,6 @@
-# Job posting: TS/JS/Svelte Dev
+# Come work with us!
+
+## We are hiring a TS/JS/Svelte Dev
 
 We just broke ground on a rewrite of our [Fast-Weigh web ui](https://tacinsight.com).
 

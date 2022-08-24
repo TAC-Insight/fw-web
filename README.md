@@ -8,6 +8,7 @@
 
 - [SvelteKit](https://kit.svelte.dev) & [the auto adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-auto)
 - [TailwindCSS](https://tailwindcss.com/)
+- [OpenAPI Typescript Codegen](https://github.com/ferdikoomen/openapi-typescript-codegen)
 
 ### Hosted on...
 
