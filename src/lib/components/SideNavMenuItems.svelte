@@ -6,6 +6,7 @@
 	import ClipboardIcon from './icons/ClipboardIcon.svelte';
 	import ClipboardListIcon from './icons/ClipboardListIcon.svelte';
 	import CodeIcon from './icons/CodeIcon.svelte';
+	import Cog6Tooth from './icons/Cog6Tooth.svelte';
 	import CollectionIcon from './icons/CollectionIcon.svelte';
 	import CurrencyDollarIcon from './icons/CurrencyDollarIcon.svelte';
 	import HomeIcon from './icons/HomeIcon.svelte';
@@ -33,6 +34,10 @@
 		<div slot="links">
 			<NavLink href="/resources/customers">Customers</NavLink>
 			<NavLink href="/resources/products">Products</NavLink>
+			<NavLink
+				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Inventory')}
+				href="/resources/inventory">Inventory</NavLink
+			>
 			<NavLink href="/resources/regions">Company Locations</NavLink>
 			<NavLink href="/resources/salespeople">Salespeople</NavLink>
 			<NavLink href="/resources/inspectors">Inspectors</NavLink>
@@ -54,18 +59,20 @@
 	</SideNavMenuItem>
 
 	<!-- Quotes -->
-	<SideNavMenuItem
-		open={$navStore.isQuotesOpen}
-		on:click={() => ($navStore.isQuotesOpen = !$navStore.isQuotesOpen)}
-	>
-		<span slot="title">Quotes</span>
-		<span slot="icon"><ClipboardIcon /></span>
-		<div slot="links">
-			<NavLink href="/quotes/dashboard">Dashboard</NavLink>
-			<NavLink href="/quotes">Quotes</NavLink>
-			<NavLink href="/quotes/projects">Projects</NavLink>
-		</div>
-	</SideNavMenuItem>
+	{#if $sessionStore?.tenantInfo?.modules?.includes('Quote System')}
+		<SideNavMenuItem
+			open={$navStore.isQuotesOpen}
+			on:click={() => ($navStore.isQuotesOpen = !$navStore.isQuotesOpen)}
+		>
+			<span slot="title">Quotes</span>
+			<span slot="icon"><ClipboardIcon /></span>
+			<div slot="links">
+				<NavLink href="/quotes/dashboard">Dashboard</NavLink>
+				<NavLink href="/quotes">Quotes</NavLink>
+				<NavLink href="/quotes/projects">Projects</NavLink>
+			</div>
+		</SideNavMenuItem>
+	{/if}
 
 	<!-- Orders -->
 	<SideNavMenuItem
@@ -83,32 +90,36 @@
 	</SideNavMenuItem>
 
 	<!-- Dispatch -->
-	<SideNavMenuItem
-		open={$navStore.isDispatchOpen}
-		on:click={() => ($navStore.isDispatchOpen = !$navStore.isDispatchOpen)}
-	>
-		<span slot="title">Dispatch</span>
-		<span slot="icon"><LocationMarkerIcon /></span>
-		<div slot="links">
-			<NavLink href="/requests">Requests</NavLink>
-			<NavLink href="/requests/live">Live Tracking</NavLink>
-			<NavLink href="/requests/query">Tracking Query</NavLink>
-			<NavLink href="/requests/drivers">Drivers</NavLink>
-		</div>
-	</SideNavMenuItem>
+	{#if $sessionStore?.tenantInfo?.modules?.includes('Requests')}
+		<SideNavMenuItem
+			open={$navStore.isDispatchOpen}
+			on:click={() => ($navStore.isDispatchOpen = !$navStore.isDispatchOpen)}
+		>
+			<span slot="title">Dispatch</span>
+			<span slot="icon"><LocationMarkerIcon /></span>
+			<div slot="links">
+				<NavLink href="/requests">Requests</NavLink>
+				<NavLink href="/requests/live">Live Tracking</NavLink>
+				<NavLink href="/requests/query">Tracking Query</NavLink>
+				<NavLink href="/requests/drivers">Drivers</NavLink>
+			</div>
+		</SideNavMenuItem>
+	{/if}
 
 	<!-- In Yard -->
-	<SideNavMenuItem
-		open={$navStore.isInYardOpen}
-		on:click={() => ($navStore.isInYardOpen = !$navStore.isInYardOpen)}
-	>
-		<span slot="title">In-Yard</span>
-		<span slot="icon"><ShieldCheckIcon /></span>
-		<div slot="links">
-			<NavLink href="/in-yard">In-Yard Now</NavLink>
-			<NavLink href="/in-yard/history">History</NavLink>
-		</div>
-	</SideNavMenuItem>
+	{#if $sessionStore?.tenantInfo?.modules?.includes('Fast Load')}
+		<SideNavMenuItem
+			open={$navStore.isInYardOpen}
+			on:click={() => ($navStore.isInYardOpen = !$navStore.isInYardOpen)}
+		>
+			<span slot="title">In-Yard</span>
+			<span slot="icon"><ShieldCheckIcon /></span>
+			<div slot="links">
+				<NavLink href="/in-yard">In-Yard Now</NavLink>
+				<NavLink href="/in-yard/history">History</NavLink>
+			</div>
+		</SideNavMenuItem>
+	{/if}
 
 	<!-- Tickets -->
 	<SideNavMenuItem
@@ -126,36 +137,58 @@
 	</SideNavMenuItem>
 
 	<!-- Billing/AR -->
-	<SideNavMenuItem
-		open={$navStore.isBillingOpen}
-		on:click={() => ($navStore.isBillingOpen = !$navStore.isBillingOpen)}
-	>
-		<span slot="title">Billing/AR</span>
-		<span slot="icon"><CurrencyDollarIcon /></span>
-		<div slot="links">
-			<NavLink href="/billing">Billing</NavLink>
-			<NavLink href="/billing/ar">Balance Dashboard</NavLink>
-			<NavLink href="/billing/ar/payment">New Payment</NavLink>
-			<NavLink href="/billing/ar/query">Invoice / Payment Query</NavLink>
-			<NavLink href="/billing/ar/export">Payment Export</NavLink>
-			<NavLink href="/billing/ar/credit">Customer Credit</NavLink>
-			<NavLink href="/billing/setup">Billing Setup</NavLink>
-		</div>
-	</SideNavMenuItem>
+	{#if $sessionStore?.tenantInfo?.modules?.includes('Billing')}
+		<SideNavMenuItem
+			open={$navStore.isBillingOpen}
+			on:click={() => ($navStore.isBillingOpen = !$navStore.isBillingOpen)}
+		>
+			<span slot="title">Billing/AR</span>
+			<span slot="icon"><CurrencyDollarIcon /></span>
+			<div slot="links">
+				<NavLink href="/billing">Billing</NavLink>
+				<NavLink
+					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
+					href="/billing/ar">Balance Dashboard</NavLink
+				>
+				<NavLink
+					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
+					href="/billing/ar/payment">New Payment</NavLink
+				>
+				<NavLink
+					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
+					href="/billing/ar/query">Invoice / Payment Query</NavLink
+				>
+				<NavLink
+					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
+					href="/billing/ar/export">Payment Export</NavLink
+				>
+				<NavLink
+					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
+					href="/billing/ar/credit">Customer Credit</NavLink
+				>
+				<NavLink
+					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
+					href="/billing/setup">Billing Setup</NavLink
+				>
+			</div>
+		</SideNavMenuItem>
+	{/if}
 
-	<!-- Billing/AR -->
-	<SideNavMenuItem
-		open={$navStore.isHaulerPayOpen}
-		on:click={() => ($navStore.isHaulerPayOpen = !$navStore.isHaulerPayOpen)}
-	>
-		<span slot="title">Hauler Pay</span>
-		<span slot="icon"><CashIcon /></span>
-		<div slot="links">
-			<NavLink href="/haulerpay">Statements</NavLink>
-			<NavLink href="/haulerpay/adjustments">Truck Adjustments</NavLink>
-			<NavLink href="/haulerpay/setup">Setup</NavLink>
-		</div>
-	</SideNavMenuItem>
+	<!-- Hauler Pay -->
+	{#if $sessionStore?.tenantInfo?.modules?.includes('Hauler Pay')}
+		<SideNavMenuItem
+			open={$navStore.isHaulerPayOpen}
+			on:click={() => ($navStore.isHaulerPayOpen = !$navStore.isHaulerPayOpen)}
+		>
+			<span slot="title">Hauler Pay</span>
+			<span slot="icon"><CashIcon /></span>
+			<div slot="links">
+				<NavLink href="/haulerpay">Statements</NavLink>
+				<NavLink href="/haulerpay/adjustments">Truck Adjustments</NavLink>
+				<NavLink href="/haulerpay/setup">Setup</NavLink>
+			</div>
+		</SideNavMenuItem>
+	{/if}
 
 	<!-- Reporting -->
 	<SideNavMenuItem
@@ -166,21 +199,46 @@
 		<span slot="icon"><ChartSquareBarIcon /></span>
 		<div slot="links">
 			<NavLink href="/reports">Reports</NavLink>
-			<NavLink href="/reports/scheduled">Scheduled Reports</NavLink>
-			<NavLink href="/reports/analytics">Analytics</NavLink>
+			<NavLink
+				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Scheduled Reports')}
+				href="/reports/scheduled">Scheduled Reports</NavLink
+			>
+			<NavLink
+				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Analytics')}
+				href="/reports/analytics">Analytics</NavLink
+			>
 		</div>
 	</SideNavMenuItem>
 
 	<!-- Integrations -->
+	{#if $sessionStore?.tenantInfo?.modules?.includes('API')}
+		<SideNavMenuItem
+			open={$navStore.isIntegrationsOpen}
+			on:click={() => ($navStore.isIntegrationsOpen = !$navStore.isIntegrationsOpen)}
+		>
+			<span slot="title">Integrations</span>
+			<span slot="icon"><CodeIcon /></span>
+			<div slot="links">
+				<NavLink href="/integrations/apikeys">API Keys</NavLink>
+				<NavLink href="/integrations/webhooks">Webhooks</NavLink>
+			</div>
+		</SideNavMenuItem>
+	{/if}
+
+	<!-- Setup / Config -->
 	<SideNavMenuItem
-		open={$navStore.isIntegrationsOpen}
-		on:click={() => ($navStore.isIntegrationsOpen = !$navStore.isIntegrationsOpen)}
+		open={$navStore.isSetupOpen}
+		on:click={() => ($navStore.isSetupOpen = !$navStore.isSetupOpen)}
 	>
-		<span slot="title">Integrations</span>
-		<span slot="icon"><CodeIcon /></span>
+		<span slot="title">Setup</span>
+		<span slot="icon"><Cog6Tooth /></span>
 		<div slot="links">
-			<NavLink href="/integrations/apikeys">API Keys</NavLink>
-			<NavLink href="/integrations/webhooks">Webhooks</NavLink>
+			<NavLink href="/settings/user">User settings</NavLink>
+			<NavLink href="/settings/company">Company settings</NavLink>
+			<NavLink
+				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Notifications')}
+				href="/settings/notifications">Notifications</NavLink
+			>
 		</div>
 	</SideNavMenuItem>
 </div>

@@ -14,6 +14,7 @@ interface NavStore {
 	isHaulerPayOpen?: boolean;
 	isReportingOpen?: boolean;
 	isIntegrationsOpen?: boolean;
+	isSetupOpen?: boolean;
 }
 
 export const navStore = writable<NavStore>(
