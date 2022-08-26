@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import ChevronDownIcon from './icons/ChevronDownIcon.svelte';
 	import ChevronRightIcon from './icons/ChevronRightIcon.svelte';
 	export let open: boolean = false;
@@ -22,7 +21,7 @@
 	</div>
 
 	{#if open}
-		<div class="mt-1" in:fly out:fly>
+		<div class="mt-1">
 			<slot name="links" />
 		</div>
 	{/if}

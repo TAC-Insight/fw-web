@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { navStore } from '$lib/stores/navStore';
 	import { sessionStore } from '$lib/stores/sessionStore';
-	import { fly } from 'svelte/transition';
 	import CashIcon from './icons/CashIcon.svelte';
 	import ChartSquareBarIcon from './icons/ChartSquareBarIcon.svelte';
 	import ClipboardIcon from './icons/ClipboardIcon.svelte';
@@ -11,7 +10,6 @@
 	import CurrencyDollarIcon from './icons/CurrencyDollarIcon.svelte';
 	import HomeIcon from './icons/HomeIcon.svelte';
 	import LocationMarkerIcon from './icons/LocationMarkerIcon.svelte';
-	import MenuIcon from './icons/MenuIcon.svelte';
 	import ShieldCheckIcon from './icons/ShieldCheckIcon.svelte';
 	import TicketIcon from './icons/TicketIcon.svelte';
 	import TruckIcon from './icons/TruckIcon.svelte';

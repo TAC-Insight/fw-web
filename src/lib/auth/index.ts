@@ -18,7 +18,7 @@ export const destroySessionAndRedirect = async () => {
 export const requireAuth = async () => {
 	// confirm session is set
 	const session = get(sessionStore);
-	if (!session.sessionID) await destroySessionAndRedirect();
+	if (!session?.sessionID) await destroySessionAndRedirect();
 
 	// TODO: check tenant module access
 

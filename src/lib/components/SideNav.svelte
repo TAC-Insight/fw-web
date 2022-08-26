@@ -8,6 +8,9 @@
 	import SearchIcon from './icons/SearchIcon.svelte';
 	import ChevronDoubleUpIcon from './icons/ChevronDoubleUpIcon.svelte';
 	import SideNavMenuItems from './SideNavMenuItems.svelte';
+	import getApiClient from '$lib/getApiClient';
+	import { createToast } from '$lib/stores/toastStore';
+	import { goto } from '$app/navigation';
 </script>
 
 {#if !$navStore.isNavOpen}
@@ -75,5 +78,27 @@
 
 		<!-- Menu items -->
 		<SideNavMenuItems />
+
+		<!-- Sign out -->
+		<button
+			class="rounded font-bold text-white text-xs p-2 bg-gradient-to-t from-red-800 to-red-500"
+			on:click={async () => {
+				try {
+					const api = await getApiClient();
+					await api.auth.logout();
+					$sessionStore = null;
+					goto('/auth/sign-in');
+				} catch (e) {
+					createToast({
+						title: 'Error',
+						message: 'There was an error trying to sign out. Refresh and try again.',
+						type: 'warning',
+						timeout: 5000
+					});
+				}
+			}}
+		>
+			Sign out
+		</button>
 	</nav>
 {/if}
