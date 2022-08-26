@@ -172,4 +172,16 @@ requestBody?: UDFModel,
         });
     }
 
+    /**
+     * Returns all udf data types
+     * @returns string Success
+     * @throws ApiError
+     */
+    public getUdfDataTypes(): CancelablePromise<Array<string>> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/udf/datatype',
+        });
+    }
+
 }

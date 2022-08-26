@@ -8,6 +8,7 @@ import type { UserInfo } from './UserInfo';
 export type LoginResponse = {
     success?: boolean;
     message?: string | null;
+    failure?: string | null;
     sessionID?: string | null;
     userInfo?: UserInfo;
     tenantInfo?: TenantInfo;

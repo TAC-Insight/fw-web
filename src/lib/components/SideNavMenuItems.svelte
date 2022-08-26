@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { hasEntityPermission, hasTenantPermission, isAdminOrSuperUser } from '$lib/auth';
+
 	import { navStore } from '$lib/stores/navStore';
 	import { sessionStore } from '$lib/stores/sessionStore';
 	import CashIcon from './icons/CashIcon.svelte';
@@ -32,13 +34,21 @@
 		<span slot="title">Resources</span>
 		<span slot="icon"><CollectionIcon /></span>
 		<div slot="links">
-			<NavLink href="/resources/customers">Customers</NavLink>
-			<NavLink href="/resources/products">Products</NavLink>
-			<NavLink
-				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Inventory')}
-				href="/resources/inventory">Inventory</NavLink
+			<NavLink disabled={!hasEntityPermission('Customer')} href="/resources/customers"
+				>Customers</NavLink
 			>
-			<NavLink href="/resources/regions">Company Locations</NavLink>
+			<NavLink disabled={!hasEntityPermission('Product')} href="/resources/products"
+				>Products</NavLink
+			>
+			<NavLink disabled={!hasEntityPermission('TaxCode')} href="/resources/taxcodes"
+				>Tax Codes</NavLink
+			>
+			<NavLink disabled={!hasTenantPermission('Inventory')} href="/resources/inventory"
+				>Inventory</NavLink
+			>
+			<NavLink disabled={!hasEntityPermission('Region')} href="/resources/regions"
+				>Company Locations</NavLink
+			>
 			<NavLink href="/resources/salespeople">Salespeople</NavLink>
 			<NavLink href="/resources/inspectors">Inspectors</NavLink>
 		</div>
@@ -52,14 +62,14 @@
 		<span slot="title">Trucks</span>
 		<span slot="icon"><TruckIcon /></span>
 		<div slot="links">
-			<NavLink href="/trucks">Trucks</NavLink>
-			<NavLink href="/trucks/haulers">Haulers</NavLink>
-			<NavLink href="/trucks/types">Truck Types</NavLink>
+			<NavLink disabled={!hasEntityPermission('Truck')} href="/trucks">Trucks</NavLink>
+			<NavLink disabled={!hasEntityPermission('Hauler')} href="/trucks/haulers">Haulers</NavLink>
+			<NavLink disabled={!hasEntityPermission('Truck')} href="/trucks/types">Truck Types</NavLink>
 		</div>
 	</SideNavMenuItem>
 
 	<!-- Quotes -->
-	{#if $sessionStore?.tenantInfo?.modules?.includes('Quote System')}
+	{#if hasTenantPermission('Quote System')}
 		<SideNavMenuItem
 			open={$navStore.isQuotesOpen}
 			on:click={() => ($navStore.isQuotesOpen = !$navStore.isQuotesOpen)}
@@ -67,9 +77,11 @@
 			<span slot="title">Quotes</span>
 			<span slot="icon"><ClipboardIcon /></span>
 			<div slot="links">
-				<NavLink href="/quotes/dashboard">Dashboard</NavLink>
-				<NavLink href="/quotes">Quotes</NavLink>
-				<NavLink href="/quotes/projects">Projects</NavLink>
+				<NavLink disabled={!hasEntityPermission('Quote')} href="/quotes/dashboard"
+					>Dashboard</NavLink
+				>
+				<NavLink disabled={!hasEntityPermission('Quote')} href="/quotes">Quotes</NavLink>
+				<NavLink disabled={!hasEntityPermission('Quote')} href="/quotes/projects">Projects</NavLink>
 			</div>
 		</SideNavMenuItem>
 	{/if}
@@ -82,15 +94,17 @@
 		<span slot="title">Orders</span>
 		<span slot="icon"><ClipboardListIcon /></span>
 		<div slot="links">
-			<NavLink href="/orders">Orders</NavLink>
-			<NavLink href="/orders/status">Status Update</NavLink>
-			<NavLink href="/orders/jobs">Jobs/Phases</NavLink>
-			<NavLink href="/orders/haulzones">Haul Zones</NavLink>
+			<NavLink disabled={!hasEntityPermission('Order')} href="/orders">Orders</NavLink>
+			<NavLink disabled={!hasEntityPermission('Order')} href="/orders/status">Status Update</NavLink
+			>
+			<NavLink disabled={!hasEntityPermission('Order')} href="/orders/jobs">Jobs/Phases</NavLink>
+			<NavLink disabled={!hasEntityPermission('Order')} href="/orders/haulzones">Haul Zones</NavLink
+			>
 		</div>
 	</SideNavMenuItem>
 
 	<!-- Dispatch -->
-	{#if $sessionStore?.tenantInfo?.modules?.includes('Requests')}
+	{#if hasTenantPermission('Requests')}
 		<SideNavMenuItem
 			open={$navStore.isDispatchOpen}
 			on:click={() => ($navStore.isDispatchOpen = !$navStore.isDispatchOpen)}
@@ -107,7 +121,7 @@
 	{/if}
 
 	<!-- In Yard -->
-	{#if $sessionStore?.tenantInfo?.modules?.includes('Fast Load')}
+	{#if hasTenantPermission('Fast Load')}
 		<SideNavMenuItem
 			open={$navStore.isInYardOpen}
 			on:click={() => ($navStore.isInYardOpen = !$navStore.isInYardOpen)}
@@ -137,7 +151,7 @@
 	</SideNavMenuItem>
 
 	<!-- Billing/AR -->
-	{#if $sessionStore?.tenantInfo?.modules?.includes('Billing')}
+	{#if hasTenantPermission('Billing')}
 		<SideNavMenuItem
 			open={$navStore.isBillingOpen}
 			on:click={() => ($navStore.isBillingOpen = !$navStore.isBillingOpen)}
@@ -146,36 +160,28 @@
 			<span slot="icon"><CurrencyDollarIcon /></span>
 			<div slot="links">
 				<NavLink href="/billing">Billing</NavLink>
-				<NavLink
-					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
-					href="/billing/ar">Balance Dashboard</NavLink
+				<NavLink disabled={!hasTenantPermission('Accounts Receivable')} href="/billing/ar"
+					>Balance Dashboard</NavLink
 				>
-				<NavLink
-					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
-					href="/billing/ar/payment">New Payment</NavLink
+				<NavLink disabled={!hasTenantPermission('Accounts Receivable')} href="/billing/ar/payment"
+					>New Payment</NavLink
 				>
-				<NavLink
-					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
-					href="/billing/ar/query">Invoice / Payment Query</NavLink
+				<NavLink disabled={!hasTenantPermission('Accounts Receivable')} href="/billing/ar/query"
+					>Invoice / Payment Query</NavLink
 				>
-				<NavLink
-					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
-					href="/billing/ar/export">Payment Export</NavLink
+				<NavLink disabled={!hasTenantPermission('Accounts Receivable')} href="/billing/ar/export"
+					>Payment Export</NavLink
 				>
-				<NavLink
-					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
-					href="/billing/ar/credit">Customer Credit</NavLink
+				<NavLink disabled={!hasTenantPermission('Accounts Receivable')} href="/billing/ar/credit"
+					>Customer Credit</NavLink
 				>
-				<NavLink
-					disabled={!$sessionStore?.tenantInfo?.modules?.includes('Accounts Receivable')}
-					href="/billing/setup">Billing Setup</NavLink
-				>
+				<NavLink href="/billing/setup">Billing Setup</NavLink>
 			</div>
 		</SideNavMenuItem>
 	{/if}
 
 	<!-- Hauler Pay -->
-	{#if $sessionStore?.tenantInfo?.modules?.includes('Hauler Pay')}
+	{#if hasTenantPermission('Hauler Pay')}
 		<SideNavMenuItem
 			open={$navStore.isHaulerPayOpen}
 			on:click={() => ($navStore.isHaulerPayOpen = !$navStore.isHaulerPayOpen)}
@@ -199,19 +205,17 @@
 		<span slot="icon"><ChartSquareBarIcon /></span>
 		<div slot="links">
 			<NavLink href="/reports">Reports</NavLink>
-			<NavLink
-				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Scheduled Reports')}
-				href="/reports/scheduled">Scheduled Reports</NavLink
-			>
-			<NavLink
-				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Analytics')}
-				href="/reports/analytics">Analytics</NavLink
-			>
+			<NavLink disabled={!hasTenantPermission('Scheduled Reports')} href="/reports/scheduled">
+				Scheduled Reports
+			</NavLink>
+			<NavLink disabled={!hasTenantPermission('Analytics')} href="/reports/analytics">
+				Analytics
+			</NavLink>
 		</div>
 	</SideNavMenuItem>
 
 	<!-- Integrations -->
-	{#if $sessionStore?.tenantInfo?.modules?.includes('API')}
+	{#if hasTenantPermission('API')}
 		<SideNavMenuItem
 			open={$navStore.isIntegrationsOpen}
 			on:click={() => ($navStore.isIntegrationsOpen = !$navStore.isIntegrationsOpen)}
@@ -220,7 +224,9 @@
 			<span slot="icon"><CodeIcon /></span>
 			<div slot="links">
 				<NavLink href="/integrations/apikeys">API Keys</NavLink>
-				<NavLink href="/integrations/webhooks">Webhooks</NavLink>
+				<NavLink disabled={!hasTenantPermission('Webhooks')} href="/integrations/webhooks">
+					Webhooks
+				</NavLink>
 			</div>
 		</SideNavMenuItem>
 	{/if}
@@ -234,11 +240,11 @@
 		<span slot="icon"><Cog6Tooth /></span>
 		<div slot="links">
 			<NavLink href="/settings/user">User settings</NavLink>
-			<NavLink href="/settings/company">Company settings</NavLink>
-			<NavLink
-				disabled={!$sessionStore?.tenantInfo?.modules?.includes('Notifications')}
-				href="/settings/notifications">Notifications</NavLink
-			>
+			<NavLink disabled={!isAdminOrSuperUser()} href="/settings/company">Company settings</NavLink>
+			<NavLink disabled={!isAdminOrSuperUser()} href="/settings/users">Company users</NavLink>
+			<NavLink disabled={!hasTenantPermission('Notifications')} href="/settings/notifications">
+				Notifications
+			</NavLink>
 		</div>
 	</SideNavMenuItem>
 </div>

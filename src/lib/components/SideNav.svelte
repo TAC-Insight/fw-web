@@ -1,16 +1,14 @@
 <script lang="ts">
 	import { navStore } from '$lib/stores/navStore';
-	import { sessionStore } from '$lib/stores/sessionStore';
 	import { isCommandPaletteOpen } from '$lib/stores/commandPaletteStore';
 	import Logo from '$lib/assets/logo.png';
 	import MenuIcon from './icons/MenuIcon.svelte';
-	import { fly } from 'svelte/transition';
 	import SearchIcon from './icons/SearchIcon.svelte';
 	import ChevronDoubleUpIcon from './icons/ChevronDoubleUpIcon.svelte';
 	import SideNavMenuItems from './SideNavMenuItems.svelte';
 	import getApiClient from '$lib/getApiClient';
 	import { createToast } from '$lib/stores/toastStore';
-	import { goto } from '$app/navigation';
+	import { destroySessionAndRedirect } from '$lib/auth';
 </script>
 
 {#if !$navStore.isNavOpen}
@@ -27,8 +25,6 @@
 {:else}
 	<nav
 		class="flex max-h-screen w-56 flex-col overflow-auto bg-gradient-to-tr from-gray-300 to-slate-300 p-2"
-		in:fly={{ x: -100, duration: 200 }}
-		out:fly={{ x: -100, duration: 200 }}
 	>
 		<!-- Header -->
 		<section class="flex flex-row space-x-1">
@@ -44,6 +40,7 @@
 				<MenuIcon class="h-4 w-4" />
 			</button>
 		</section>
+
 		<!-- Command Palette -->
 		<section>
 			<div
@@ -86,8 +83,7 @@
 				try {
 					const api = await getApiClient();
 					await api.auth.logout();
-					$sessionStore = null;
-					goto('/auth/sign-in');
+					destroySessionAndRedirect();
 				} catch (e) {
 					createToast({
 						title: 'Error',

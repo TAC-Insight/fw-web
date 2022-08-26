@@ -3,9 +3,9 @@
 </script>
 
 {#if $toastStore}
-	<div class="grid place-items-center z-100">
+	<div class="grid place-items-center z-auto">
 		<div
-			class=" flex flex-col absolute self-center top-[2vh] rounded p-2  max-w-xl w-1/2"
+			class="flex flex-col absolute self-center top-[2vh] rounded p-2  max-w-xl w-1/2 bg-white"
 			class:info={$toastStore.type === 'info'}
 			class:danger={$toastStore.type === 'danger'}
 			class:success={$toastStore.type === 'success'}
