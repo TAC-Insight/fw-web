@@ -5,6 +5,7 @@
 	import Input from '$lib/components/Input.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import getApiClient from '$lib/getApiClient';
+	import { createToast } from '$lib/stores/toastStore';
 
 	let userID = '';
 	let password = '';
@@ -23,11 +24,23 @@
 			} else {
 				isLoading = false;
 				console.error('Login failed:', session.message);
-				alert(session?.message ?? 'Login failed');
+				createToast({
+					title: 'Authentication error',
+					message: session?.message ?? 'Unknown error',
+					type: 'warning',
+					timeout: 8000
+				});
 			}
 		} catch (error: any) {
+			isLoading = false;
 			console.log('Unknown error:', error);
-			alert('Unknown error...');
+			createToast({
+				title: 'Authentication error',
+				message:
+					'Check the user/password fields and try again. If the error persists please contact support.',
+				type: 'danger',
+				timeout: 8000
+			});
 		}
 	};
 </script>
@@ -36,8 +49,8 @@
 	<div
 		class="flex-flex-col space-y-4 rounded bg-gradient-to-t from-slate-300 to-gray-300 p-8 shadow-2xl"
 	>
-		<section class="flex space-x-2">
-			<img src={Logo} height={32} width={32} alt="FW Road Logo" />
+		<section class="flex place-items-center space-x-2">
+			<img src={Logo} class="h-8 w-8" alt="FW Road Logo" />
 			<h1 class="text-2xl font-bold">Fast-Weigh / Log in</h1>
 		</section>
 
