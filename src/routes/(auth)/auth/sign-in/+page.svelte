@@ -49,7 +49,7 @@
 
 					<button
 						type="submit"
-						class="rounded bg-gradient-to-tr from-blue-500 to-emerald-500 p-2 font-semibold text-white hover:opacity-75  "
+						class="rounded bg-gradient-to-t from-blue-800 to-blue-500 p-2 font-semibold text-white hover:opacity-75  "
 					>
 						Log in
 					</button>
