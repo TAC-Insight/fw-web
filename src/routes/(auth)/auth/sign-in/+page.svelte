@@ -47,10 +47,10 @@
 
 <div class="grid h-screen place-items-center">
 	<div
-		class="flex-flex-col space-y-4 rounded bg-gradient-to-t from-slate-300 to-gray-300 p-8 shadow-2xl"
+		class="flex flex-col space-y-4 rounded bg-gradient-to-t from-slate-300 to-gray-300 p-8 shadow-2xl"
 	>
 		<section class="flex place-items-center space-x-2">
-			<img src={Logo} class="h-8 w-8" alt="FW Road Logo" />
+			<img src={Logo} class="wiggle h-8 w-8" alt="FW Road Logo" />
 			<h1 class="text-2xl font-bold">Fast-Weigh / Log in</h1>
 		</section>
 
@@ -75,3 +75,27 @@
 		</section>
 	</div>
 </div>
+
+<style>
+	@keyframes wiggle {
+		0% {
+			transform: rotate(0deg);
+		}
+		80% {
+			transform: rotate(0deg);
+		}
+		85% {
+			transform: rotate(14deg);
+		}
+		95% {
+			transform: rotate(-14deg);
+		}
+		100% {
+			transform: rotate(0deg);
+		}
+	}
+
+	.wiggle {
+		animation: wiggle 2.5s infinite;
+	}
+</style>
