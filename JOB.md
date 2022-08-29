@@ -49,13 +49,13 @@ We maintain a web app, native desktop app, and 2 iOS/Android apps that all work 
 - Prior Svelte experience a plus
 - Good communicator, in conversation and in writing.
 
-### Location
+## Location
 
 - Work remotely or in our HQ (Knoxville, TN).
 - No relocation stipend will be offered.
 - UPDATE: US based only please
 
-### Compensation
+## Compensation
 
 - This is a full-time salaried position.
 - Salary range $70k-$100k/year based on experience.
@@ -63,7 +63,7 @@ We maintain a web app, native desktop app, and 2 iOS/Android apps that all work 
 - Health/Dental/Vision plan
 - Health Savings Plan contributions
 
-### How to apply
+## How to apply
 
 Email with subject: "Svelte/TS Dev"
 
