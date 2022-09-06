@@ -87,6 +87,7 @@ export const requireAuth = async ({
 	// confirm session stil valid
 	try {
 		const sessionValid = await http.auth.session();
+		console.log(sessionValid);
 		if (!sessionValid.success) await destroySessionAndRedirect();
 		return session;
 	} catch (error) {
