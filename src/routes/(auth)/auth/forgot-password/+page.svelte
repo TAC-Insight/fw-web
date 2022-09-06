@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { sessionStore } from '$lib/stores/sessionStore';
 	import { goto } from '$app/navigation';
 	import Logo from '$lib/assets/logo.png';
 	import Input from '$lib/components/Input.svelte';
 	import Link from '$lib/components/Link.svelte';
-	import getApiClient from '$lib/getApiClient';
+	import { http } from '$lib/http';
 
 	let userID = '';
 	let code = '';
@@ -16,7 +15,6 @@
 	const handleSendCode = async () => {
 		try {
 			isCodeSent = true;
-			const api = await getApiClient();
 		} catch (error: any) {
 			console.log('Unknown error:', error);
 			alert('Unknown error...');
@@ -25,7 +23,7 @@
 	const handleSubmitCodeAndNewPassword = async () => {
 		try {
 			isLoading = true;
-			const api = await getApiClient();
+			goto('/auth/sign-in');
 		} catch (error: any) {
 			console.log('Unknown error:', error);
 			alert('Unknown error...');

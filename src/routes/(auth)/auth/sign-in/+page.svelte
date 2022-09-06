@@ -4,8 +4,8 @@
 	import Logo from '$lib/assets/logo.png';
 	import Input from '$lib/components/Input.svelte';
 	import Link from '$lib/components/Link.svelte';
-	import getApiClient from '$lib/getApiClient';
 	import { createToast } from '$lib/stores/toastStore';
+	import { http } from '$lib/http';
 
 	let userID = '';
 	let password = '';
@@ -14,8 +14,7 @@
 	const handleSignIn = async () => {
 		try {
 			isLoading = true;
-			const api = await getApiClient();
-			const session = await api.auth.login({ requestBody: { userID, password } });
+			const session = await http.auth.login({ requestBody: { userID, password } });
 			if (session.success) {
 				// set the session store
 				$sessionStore = session;
@@ -57,12 +56,12 @@
 		<section>
 			<form on:submit|preventDefault={handleSignIn}>
 				<fieldset disabled={isLoading} class="flex flex-col space-y-2 disabled:opacity-40">
-					<Input label="User ID:" type="text" bind:value={userID} required autoFocus />
+					<Input label="User ID:" type="text" bind:value={userID} required autofocus />
 					<Input label="Password:" type="password" bind:value={password} required />
 
 					<button
 						type="submit"
-						class="rounded bg-gradient-to-t from-blue-800 to-blue-500 p-2 font-semibold text-white hover:opacity-75  "
+						class="rounded bg-gradient-to-t from-blue-900 to-blue-500 p-2 font-semibold text-white hover:opacity-75  "
 					>
 						Log in
 					</button>

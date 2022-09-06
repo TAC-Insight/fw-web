@@ -12,30 +12,13 @@ export class RegionService {
 
     /**
      * Gets regions
-     * Leaving customerKey and haulerKey null will return all regions
      * @returns RegionModel Success
      * @throws ApiError
      */
-    public getRegions({
-customerKey,
-haulerKey,
-}: {
-/**
- * Setting the customerKey will return all regions associated with that customer
- */
-customerKey?: number,
-/**
- * Setting the haulerKey will return all regions associated with that hauler
- */
-haulerKey?: number,
-}): CancelablePromise<Array<RegionModel>> {
+    public getRegions(): CancelablePromise<Array<RegionModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/region',
-            query: {
-                'customerKey': customerKey,
-                'haulerKey': haulerKey,
-            },
         });
     }
 

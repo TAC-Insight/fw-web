@@ -19,15 +19,15 @@
 
 <style>
 	.info {
-		@apply shadow-md shadow-blue-500 text-blue-500;
+		@apply shadow-md bg-blue-200 shadow-blue-500 text-blue-900;
 	}
 	.danger {
-		@apply shadow-sm shadow-red-600 text-red-600;
+		@apply shadow-md bg-red-200 shadow-red-600 text-red-900;
 	}
 	.success {
-		@apply shadow-sm shadow-teal-600 text-teal-600;
+		@apply shadow-md bg-teal-200 shadow-teal-600 text-teal-900;
 	}
 	.warning {
-		@apply shadow-sm shadow-yellow-600 text-yellow-600;
+		@apply shadow-md bg-amber-200 shadow-amber-500 text-amber-900;
 	}
 </style>

@@ -80,7 +80,7 @@ requestBody?: CustomerContactModel,
 }): CancelablePromise<CustomerContactModel> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/customercontact/contact',
+            url: '/customercontact',
             body: requestBody,
             mediaType: 'application/json-patch+json',
         });

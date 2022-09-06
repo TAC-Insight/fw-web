@@ -1,4 +1,4 @@
-import { browser } from '$app/env';
+import { browser } from '$app/environment';
 import type { LoginResponse } from '$lib/apiClient';
 import { writable } from 'svelte/store';
 

@@ -6,9 +6,9 @@
 	import SearchIcon from './icons/SearchIcon.svelte';
 	import ChevronDoubleUpIcon from './icons/ChevronDoubleUpIcon.svelte';
 	import SideNavMenuItems from './SideNavMenuItems.svelte';
-	import getApiClient from '$lib/getApiClient';
 	import { createToast } from '$lib/stores/toastStore';
 	import { destroySessionAndRedirect } from '$lib/auth';
+	import { AuthService } from '$lib/apiClient';
 </script>
 
 {#if !$navStore.isNavOpen}
@@ -81,8 +81,7 @@
 			class="rounded font-bold text-white text-xs p-2 bg-gradient-to-t from-red-800 to-red-500"
 			on:click={async () => {
 				try {
-					const api = await getApiClient();
-					await api.auth.logout();
+					await AuthService.logout();
 					destroySessionAndRedirect();
 				} catch (e) {
 					createToast({

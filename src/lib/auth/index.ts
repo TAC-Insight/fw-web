@@ -1,9 +1,7 @@
-import { browser } from '$app/env';
 import { goto } from '$app/navigation';
-import getApiClient from '$lib/getApiClient';
+import { http } from '$lib/http';
 import { sessionStore } from '$lib/stores/sessionStore';
 import { createToast } from '$lib/stores/toastStore';
-import { redirect } from '@sveltejs/kit';
 import { get } from 'svelte/store';
 
 type TenantPermissionType =
@@ -40,13 +38,14 @@ export const requireAuth = async ({
 }: {
 	module?: TenantPermissionType;
 	entity?: EntityType;
-	requireAdmin: boolean;
+	requireAdmin?: boolean;
 }) => {
 	// confirm session is set
 	const session = get(sessionStore);
-	if (!session?.sessionID) await destroySessionAndRedirect();
+	console.log('session', session);
+	if (!session?.sessionID) destroySessionAndRedirect();
 
-	// if requireAdmin checkc if admin
+	// if requireAdmin check if admin
 	if (requireAdmin) {
 		if (!isAdminOrSuperUser) {
 			createToast({
@@ -87,12 +86,11 @@ export const requireAuth = async ({
 
 	// confirm session stil valid
 	try {
-		const api = await getApiClient();
-		const sessionValid = await api.auth.session();
+		const sessionValid = await http.auth.session();
 		if (!sessionValid.success) await destroySessionAndRedirect();
 		return session;
 	} catch (error) {
-		await destroySessionAndRedirect();
+		destroySessionAndRedirect();
 	}
 };
 
@@ -121,8 +119,5 @@ export const isAdminOrSuperUser = () => {
 
 export const destroySessionAndRedirect = () => {
 	sessionStore.set(null);
-	if (browser) {
-		return goto('/auth/sign-in');
-	}
-	throw redirect(307, '/auth/sign-in');
+	return goto('/auth/sign-in');
 };

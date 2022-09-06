@@ -4,6 +4,6 @@
 
 export type AuthenticationResponse = {
     success?: boolean;
-    message?: string | null;
     failure?: string | null;
+    message?: string | null;
 };

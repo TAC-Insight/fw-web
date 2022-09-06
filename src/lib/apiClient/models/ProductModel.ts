@@ -11,5 +11,4 @@ export type ProductModel = {
     category?: string | null;
     dotName?: string | null;
     qbid?: string | null;
-    readonly modifiedDate?: string;
 };

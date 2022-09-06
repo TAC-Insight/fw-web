@@ -15,16 +15,21 @@ export class TruckService {
 
     /**
      * Gets trucks
-     * Leaving regionKey and active null will return all trucks
+     * Leaving hauler key, region key and active null will return all trucks
      * @returns TruckModel Success
      * @throws ApiError
      */
     public getTrucks({
+haulerKey,
 regionKey,
 active,
 }: {
 /**
- * Setting regionKey will return all trucks associated with that region
+ * Setting hauler key will return all trucks associated with that hauler
+ */
+haulerKey?: number,
+/**
+ * Setting region key will return all trucks associated with that region
  */
 regionKey?: number,
 /**
@@ -36,6 +41,7 @@ active?: boolean,
             method: 'GET',
             url: '/truck',
             query: {
+                'haulerKey': haulerKey,
                 'regionKey': regionKey,
                 'active': active,
             },

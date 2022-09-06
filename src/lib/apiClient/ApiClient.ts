@@ -5,12 +5,14 @@ import type { BaseHttpRequest } from './core/BaseHttpRequest';
 import type { OpenAPIConfig } from './core/OpenAPI';
 import { FetchHttpRequest } from './core/FetchHttpRequest';
 
+import { AppService } from './services/AppService';
 import { AuthService } from './services/AuthService';
 import { CustomerService } from './services/CustomerService';
 import { CustomerContactService } from './services/CustomerContactService';
 import { HaulerService } from './services/HaulerService';
 import { HaulZoneService } from './services/HaulZoneService';
 import { IdentityService } from './services/IdentityService';
+import { LoadTicketService } from './services/LoadTicketService';
 import { LocationService } from './services/LocationService';
 import { NotesAndDocumentsService } from './services/NotesAndDocumentsService';
 import { OrderService } from './services/OrderService';
@@ -30,12 +32,14 @@ type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 
 export class ApiClient {
 
+    public readonly app: AppService;
     public readonly auth: AuthService;
     public readonly customer: CustomerService;
     public readonly customerContact: CustomerContactService;
     public readonly hauler: HaulerService;
     public readonly haulZone: HaulZoneService;
     public readonly identity: IdentityService;
+    public readonly loadTicket: LoadTicketService;
     public readonly location: LocationService;
     public readonly notesAndDocuments: NotesAndDocumentsService;
     public readonly order: OrderService;
@@ -66,12 +70,14 @@ export class ApiClient {
             ENCODE_PATH: config?.ENCODE_PATH,
         });
 
+        this.app = new AppService(this.request);
         this.auth = new AuthService(this.request);
         this.customer = new CustomerService(this.request);
         this.customerContact = new CustomerContactService(this.request);
         this.hauler = new HaulerService(this.request);
         this.haulZone = new HaulZoneService(this.request);
         this.identity = new IdentityService(this.request);
+        this.loadTicket = new LoadTicketService(this.request);
         this.location = new LocationService(this.request);
         this.notesAndDocuments = new NotesAndDocumentsService(this.request);
         this.order = new OrderService(this.request);

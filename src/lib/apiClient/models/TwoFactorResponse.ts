@@ -4,7 +4,7 @@
 
 export type TwoFactorResponse = {
     success?: boolean;
-    message?: string | null;
     failure?: string | null;
+    message?: string | null;
     sessionID?: string | null;
 };
