@@ -44,7 +44,7 @@
 			{#if !isCodeSent}
 				<form on:submit|preventDefault={handleSendCode}>
 					<fieldset disabled={isLoading} class="flex flex-col space-y-2 disabled:opacity-40">
-						<Input label="User ID:" type="text" bind:value={userID} required autoFocus />
+						<Input label="User ID:" type="text" bind:value={userID} required autofocus />
 
 						<button
 							type="submit"

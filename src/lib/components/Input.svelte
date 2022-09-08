@@ -1,11 +1,15 @@
 <script lang="ts">
+	import { autoFocus } from '$lib/actions';
 	export let type: 'text' | 'password' = 'text';
 	export let value: string | number = '';
 	export let label: string = '';
 	export let placeholder: string = '';
 	export let required: boolean = false;
 	export let autofocus: boolean = false;
+
 	let isVisible: boolean = false;
+
+	$: computedType = type === 'password' ? (isVisible ? 'text' : 'password') : type;
 
 	let id = `field-${Math.floor(Math.random() * 1000)}`;
 
@@ -32,16 +36,12 @@
 		</div>
 	{/if}
 	<!-- svelte-ignore a11y-autofocus -->
-	{#if type == 'password'}
-		<input
-			{id}
-			type={isVisible ? 'text' : 'password'}
-			{placeholder}
-			{autofocus}
-			on:input={handleInput}
-			class="rounded p-1"
-		/>
-	{:else}
-		<input {id} {type} {placeholder} {autofocus} on:input={handleInput} class="rounded p-1" />
-	{/if}
+	<input
+		{id}
+		{placeholder}
+		type={computedType}
+		use:autoFocus={autofocus}
+		on:input={handleInput}
+		class="rounded p-1"
+	/>
 </div>
