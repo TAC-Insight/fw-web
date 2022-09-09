@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CodeValueModel } from '../models/CodeValueModel';
-import type { QuoteProductModel } from '../models/QuoteProductModel';
+import type { FWT_Domain_Models_CodeValueModel } from '../models/FWT_Domain_Models_CodeValueModel';
+import type { FWT_Quotes_Models_QuoteProductModel } from '../models/FWT_Quotes_Models_QuoteProductModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -13,14 +13,14 @@ export class QuoteProductService {
 
     /**
      * Gets quote products for specified quote
-     * @returns QuoteProductModel Success
+     * @returns FWT_Quotes_Models_QuoteProductModel Success
      * @throws ApiError
      */
     public getQuoteProductsByQuote({
 quoteKey,
 }: {
 quoteKey: number,
-}): CancelablePromise<Array<QuoteProductModel>> {
+}): CancelablePromise<Array<FWT_Quotes_Models_QuoteProductModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quoteProduct/quote/{quoteKey}',
@@ -32,14 +32,14 @@ quoteKey: number,
 
     /**
      * Gets specified quote product
-     * @returns QuoteProductModel Success
+     * @returns FWT_Quotes_Models_QuoteProductModel Success
      * @throws ApiError
      */
     public getQuoteProductByKey({
 quoteProductKey,
 }: {
 quoteProductKey: number,
-}): CancelablePromise<QuoteProductModel> {
+}): CancelablePromise<FWT_Quotes_Models_QuoteProductModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quoteProduct/{quoteProductKey}',
@@ -71,14 +71,14 @@ quoteProductKey: number,
     /**
      * Creates a new quote product or updates an existing quote product
      * To create a new quote product, set the quote product key to zero.  To update an existing quote product, set the quote product key to that quote product's key
-     * @returns QuoteProductModel Success
+     * @returns FWT_Quotes_Models_QuoteProductModel Success
      * @throws ApiError
      */
     public saveQuoteProduct({
 requestBody,
 }: {
-requestBody?: QuoteProductModel,
-}): CancelablePromise<QuoteProductModel> {
+requestBody?: FWT_Quotes_Models_QuoteProductModel,
+}): CancelablePromise<FWT_Quotes_Models_QuoteProductModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/quoteProduct',
@@ -89,10 +89,10 @@ requestBody?: QuoteProductModel,
 
     /**
      * Returns freight/surcharge quantity types
-     * @returns CodeValueModel Success
+     * @returns FWT_Domain_Models_CodeValueModel Success
      * @throws ApiError
      */
-    public getQuantityTypes(): CancelablePromise<Array<CodeValueModel>> {
+    public getQuantityTypes(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quoteProduct/quantitytypes',

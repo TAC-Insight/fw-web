@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CodeValueModel } from '../models/CodeValueModel';
-import type { OrderProductModel } from '../models/OrderProductModel';
+import type { FWT_Domain_Models_CodeValueModel } from '../models/FWT_Domain_Models_CodeValueModel';
+import type { FWT_Orders_Models_OrderProductModel } from '../models/FWT_Orders_Models_OrderProductModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -13,14 +13,14 @@ export class OrderProductService {
 
     /**
      * Gets order products for specified order
-     * @returns OrderProductModel Success
+     * @returns FWT_Orders_Models_OrderProductModel Success
      * @throws ApiError
      */
     public getOrderProductsByOrder({
 orderKey,
 }: {
 orderKey: number,
-}): CancelablePromise<Array<OrderProductModel>> {
+}): CancelablePromise<Array<FWT_Orders_Models_OrderProductModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/orderProduct/order/{orderKey}',
@@ -32,14 +32,14 @@ orderKey: number,
 
     /**
      * Gets specified order product
-     * @returns OrderProductModel Success
+     * @returns FWT_Orders_Models_OrderProductModel Success
      * @throws ApiError
      */
     public getOrderProductByKey({
 orderProductKey,
 }: {
 orderProductKey: number,
-}): CancelablePromise<OrderProductModel> {
+}): CancelablePromise<FWT_Orders_Models_OrderProductModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/orderProduct/{orderProductKey}',
@@ -71,14 +71,14 @@ orderProductKey: number,
     /**
      * Creates a new order product or updates an existing order product
      * To create a new order product, set the order product key to zero.  To update an existing order product, set the order product key to that order product's key
-     * @returns OrderProductModel Success
+     * @returns FWT_Orders_Models_OrderProductModel Success
      * @throws ApiError
      */
     public saveOrderProduct({
 requestBody,
 }: {
-requestBody?: OrderProductModel,
-}): CancelablePromise<OrderProductModel> {
+requestBody?: FWT_Orders_Models_OrderProductModel,
+}): CancelablePromise<FWT_Orders_Models_OrderProductModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/orderProduct',
@@ -89,10 +89,10 @@ requestBody?: OrderProductModel,
 
     /**
      * Returns freight/surcharge quantity types
-     * @returns CodeValueModel Success
+     * @returns FWT_Domain_Models_CodeValueModel Success
      * @throws ApiError
      */
-    public getQuantityTypes(): CancelablePromise<Array<CodeValueModel>> {
+    public getQuantityTypes(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/orderProduct/quantitytypes',
@@ -101,10 +101,10 @@ requestBody?: OrderProductModel,
 
     /**
      * Returns order product statuses
-     * @returns CodeValueModel Success
+     * @returns FWT_Domain_Models_CodeValueModel Success
      * @throws ApiError
      */
-    public getOrderStatuses(): CancelablePromise<Array<CodeValueModel>> {
+    public getOrderStatuses(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/orderProduct/statuses',

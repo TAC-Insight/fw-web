@@ -9,6 +9,7 @@
 	import { createToast } from '$lib/stores/toastStore';
 	import { destroySessionAndRedirect } from '$lib/auth';
 	import { AuthService } from '$lib/apiClient';
+	import { http } from '$lib/http';
 </script>
 
 {#if !$navStore.isNavOpen}
@@ -81,7 +82,7 @@
 			class="rounded font-bold text-white text-xs p-2 bg-gradient-to-t from-red-800 to-red-500"
 			on:click={async () => {
 				try {
-					await AuthService.logout();
+					await http.auth.logout();
 					destroySessionAndRedirect();
 				} catch (e) {
 					createToast({

@@ -1,12 +1,11 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AuthenticationResponse } from '../models/AuthenticationResponse';
-import type { LoginRequest } from '../models/LoginRequest';
-import type { LoginResponse } from '../models/LoginResponse';
-import type { SetPasswordRequest } from '../models/SetPasswordRequest';
-import type { TwoFactorRequest } from '../models/TwoFactorRequest';
-import type { TwoFactorResponse } from '../models/TwoFactorResponse';
+import type { FWT_Authentication_Models_AuthenticationResponse } from '../models/FWT_Authentication_Models_AuthenticationResponse';
+import type { FWT_Authentication_Models_LoginResponse } from '../models/FWT_Authentication_Models_LoginResponse';
+import type { FWT_Authentication_Requests_LoginRequest } from '../models/FWT_Authentication_Requests_LoginRequest';
+import type { FWT_Authentication_Requests_ResendLoginCodeRequest } from '../models/FWT_Authentication_Requests_ResendLoginCodeRequest';
+import type { FWT_Authentication_Requests_VerifyCodeRequest } from '../models/FWT_Authentication_Requests_VerifyCodeRequest';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -16,14 +15,15 @@ export class AuthService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
-     * @returns LoginResponse Success
+     * Initiate login process
+     * @returns FWT_Authentication_Models_LoginResponse Success
      * @throws ApiError
      */
     public login({
 requestBody,
 }: {
-requestBody?: LoginRequest,
-}): CancelablePromise<LoginResponse> {
+requestBody?: FWT_Authentication_Requests_LoginRequest,
+}): CancelablePromise<FWT_Authentication_Models_LoginResponse> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/auth/login',
@@ -33,27 +33,47 @@ requestBody?: LoginRequest,
     }
 
     /**
-     * @returns TwoFactorResponse Success
+     * Verify login code/two factor code and complete login process
+     * @returns FWT_Authentication_Models_AuthenticationResponse Success
      * @throws ApiError
      */
-    public twoFactor({
+    public verifyLoginCode({
 requestBody,
 }: {
-requestBody?: TwoFactorRequest,
-}): CancelablePromise<TwoFactorResponse> {
+requestBody?: FWT_Authentication_Requests_VerifyCodeRequest,
+}): CancelablePromise<FWT_Authentication_Models_AuthenticationResponse> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/auth/twofactor',
+            url: '/auth/code',
             body: requestBody,
             mediaType: 'application/json-patch+json',
         });
     }
 
     /**
-     * @returns AuthenticationResponse Success
+     * Resend new login code.  Specify method (Email/Mobile) or leave blank to send to default method
+     * @returns FWT_Authentication_Models_AuthenticationResponse Success
      * @throws ApiError
      */
-    public session(): CancelablePromise<AuthenticationResponse> {
+    public resendLoginCode({
+requestBody,
+}: {
+requestBody?: FWT_Authentication_Requests_ResendLoginCodeRequest,
+}): CancelablePromise<FWT_Authentication_Models_AuthenticationResponse> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/auth/code/resend',
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
+        });
+    }
+
+    /**
+     * Verify user session is still valid
+     * @returns FWT_Authentication_Models_AuthenticationResponse Success
+     * @throws ApiError
+     */
+    public session(): CancelablePromise<FWT_Authentication_Models_AuthenticationResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/auth/session',
@@ -61,30 +81,14 @@ requestBody?: TwoFactorRequest,
     }
 
     /**
-     * @returns AuthenticationResponse Success
+     * Logout
+     * @returns FWT_Authentication_Models_AuthenticationResponse Success
      * @throws ApiError
      */
-    public logout(): CancelablePromise<AuthenticationResponse> {
+    public logout(): CancelablePromise<FWT_Authentication_Models_AuthenticationResponse> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/auth/logout',
-        });
-    }
-
-    /**
-     * @returns AuthenticationResponse Success
-     * @throws ApiError
-     */
-    public setPassword({
-requestBody,
-}: {
-requestBody?: SetPasswordRequest,
-}): CancelablePromise<AuthenticationResponse> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/auth/password',
-            body: requestBody,
-            mediaType: 'application/json-patch+json',
         });
     }
 

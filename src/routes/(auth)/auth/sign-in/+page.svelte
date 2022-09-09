@@ -3,23 +3,23 @@
 	import { goto } from '$app/navigation';
 	import Logo from '$lib/assets/logo.png';
 	import Input from '$lib/components/Input.svelte';
-	import Link from '$lib/components/Link.svelte';
 	import { createToast } from '$lib/stores/toastStore';
 	import { http } from '$lib/http';
+	import type { FWT_Authentication_Models_LoginResponse } from '$lib/apiClient';
 
 	let userID = '';
-	let password = '';
+	let code = '';
+	let session: FWT_Authentication_Models_LoginResponse;
+	let isCodeSent = false;
 	let isLoading = false;
 
-	const handleSignIn = async () => {
+	const handleSendCode = async () => {
 		try {
 			isLoading = true;
-			const session = await http.auth.login({ requestBody: { userID, password } });
+			session = await http.auth.login({ requestBody: { userID } });
 			if (session.success) {
-				// set the session store
-				$sessionStore = session;
+				isCodeSent = true;
 				isLoading = false;
-				await goto('/');
 			} else {
 				isLoading = false;
 				console.error('Login failed:', session.message);
@@ -32,6 +32,45 @@
 			}
 		} catch (error: any) {
 			isLoading = false;
+			console.log('Unknown error:', error);
+			createToast({
+				title: 'Authentication error',
+				message:
+					'Check the userID field and try again. If the error persists please contact support.',
+				type: 'danger',
+				timeout: 8000
+			});
+		}
+	};
+	const handleSignInWithCode = async () => {
+		try {
+			isLoading = true;
+			console.log(session);
+			console.log(code);
+			const signInWithCode = await http.auth.verifyLoginCode({
+				requestBody: { sessionID: session.sessionID, code }
+			});
+			if (signInWithCode.success) {
+				// set the session store
+				$sessionStore = session;
+				isLoading = false;
+				await goto('/');
+			} else {
+				isLoading = false;
+				console.error('Login failed:');
+				console.error(signInWithCode.failure);
+				console.error(signInWithCode.message);
+				isCodeSent = false;
+				createToast({
+					title: 'Authentication error',
+					message: signInWithCode?.message ?? 'Unknown error',
+					type: 'warning',
+					timeout: 8000
+				});
+			}
+		} catch (error: any) {
+			isLoading = false;
+			isCodeSent = false;
 			console.log('Unknown error:', error);
 			createToast({
 				title: 'Authentication error',
@@ -50,27 +89,42 @@
 	>
 		<section class="flex place-items-center space-x-2">
 			<img src={Logo} class="wiggle h-8 w-8" alt="FW Road Logo" />
-			<h1 class="text-2xl font-bold">Fast-Weigh / Log in</h1>
+			<h1 class="text-2xl font-bold">Fast-Weigh / Sign in</h1>
+		</section>
+		<section class="flex flex-col">
+			<p><span class="font-bold text-sm">Step 1:</span> Enter your User ID</p>
+			<p><span class="font-bold text-sm">Step 2:</span> Check your email/phone for code</p>
+			<p><span class="font-bold text-sm">Step 3:</span> Enter the code to sign in</p>
 		</section>
 
 		<section>
-			<form on:submit|preventDefault={handleSignIn}>
-				<fieldset disabled={isLoading} class="flex flex-col space-y-2 disabled:opacity-40">
-					<Input label="User ID:" type="text" bind:value={userID} required autofocus />
-					<Input label="Password:" type="password" bind:value={password} required />
+			{#if !isCodeSent}
+				<form on:submit|preventDefault={handleSendCode}>
+					<fieldset disabled={isLoading} class="flex flex-col space-y-2 disabled:opacity-40">
+						<Input label="User ID:" type="text" bind:value={userID} required autofocus />
 
-					<button
-						type="submit"
-						class="rounded bg-gradient-to-t from-blue-900 to-blue-500 p-2 font-semibold text-white hover:opacity-75  "
-					>
-						Log in
-					</button>
-				</fieldset>
-			</form>
-		</section>
+						<button
+							type="submit"
+							class="rounded bg-gradient-to-t from-blue-900 to-blue-500 p-2 font-semibold text-white hover:opacity-75  "
+						>
+							Send code
+						</button>
+					</fieldset>
+				</form>
+			{:else}
+				<form on:submit|preventDefault={handleSignInWithCode}>
+					<fieldset disabled={isLoading} class="flex flex-col space-y-2 disabled:opacity-40">
+						<Input label="Code:" type="text" bind:value={code} required autofocus />
 
-		<section class="text-center text-sm font-semibold">
-			<Link href="/auth/forgot-password">Forgot password?</Link>
+						<button
+							type="submit"
+							class="rounded bg-gradient-to-t from-blue-900 to-blue-500 p-2 font-semibold text-white hover:opacity-75  "
+						>
+							Sign in with code
+						</button>
+					</fieldset>
+				</form>
+			{/if}
 		</section>
 	</div>
 </div>

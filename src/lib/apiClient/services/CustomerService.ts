@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CodeValueModel } from '../models/CodeValueModel';
-import type { CustomerModel } from '../models/CustomerModel';
+import type { FWT_Customers_Models_CustomerModel } from '../models/FWT_Customers_Models_CustomerModel';
+import type { FWT_Domain_Models_CodeValueModel } from '../models/FWT_Domain_Models_CodeValueModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -14,7 +14,7 @@ export class CustomerService {
     /**
      * Gets customers
      * Leaving regionKey and haulerKey null will return all customers
-     * @returns CustomerModel Success
+     * @returns FWT_Customers_Models_CustomerModel Success
      * @throws ApiError
      */
     public getCustomers({
@@ -29,7 +29,7 @@ regionKey?: number,
  * Setting the haulerKey will return all customers associated with that hauler
  */
 haulerKey?: number,
-}): CancelablePromise<Array<CustomerModel>> {
+}): CancelablePromise<Array<FWT_Customers_Models_CustomerModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/customer',
@@ -43,14 +43,14 @@ haulerKey?: number,
     /**
      * Creates a new customer or updates an existing customer
      * To create a new customer, set the customer key to zero.  To update an existing customer, set the customer key to that customer's key
-     * @returns CustomerModel Success
+     * @returns FWT_Customers_Models_CustomerModel Success
      * @throws ApiError
      */
     public saveCustomer({
 requestBody,
 }: {
-requestBody?: CustomerModel,
-}): CancelablePromise<CustomerModel> {
+requestBody?: FWT_Customers_Models_CustomerModel,
+}): CancelablePromise<FWT_Customers_Models_CustomerModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/customer',
@@ -61,14 +61,14 @@ requestBody?: CustomerModel,
 
     /**
      * Gets a customer by key
-     * @returns CustomerModel Success
+     * @returns FWT_Customers_Models_CustomerModel Success
      * @throws ApiError
      */
     public getCustomerByKey({
 customerKey,
 }: {
 customerKey: number,
-}): CancelablePromise<CustomerModel> {
+}): CancelablePromise<FWT_Customers_Models_CustomerModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/customer/{customerKey}',
@@ -99,10 +99,10 @@ customerKey: number,
 
     /**
      * Returns valid customer credit status codes/values
-     * @returns CodeValueModel Success
+     * @returns FWT_Domain_Models_CodeValueModel Success
      * @throws ApiError
      */
-    public getCreditStatuses(): CancelablePromise<Array<CodeValueModel>> {
+    public getCreditStatuses(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/customer/creditstatuses',

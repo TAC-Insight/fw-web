@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ProductCategoryModel } from '../models/ProductCategoryModel';
-import type { ProductLocationModel } from '../models/ProductLocationModel';
-import type { ProductModel } from '../models/ProductModel';
+import type { FWT_Products_Models_ProductCategoryModel } from '../models/FWT_Products_Models_ProductCategoryModel';
+import type { FWT_Products_Models_ProductLocationModel } from '../models/FWT_Products_Models_ProductLocationModel';
+import type { FWT_Products_Models_ProductModel } from '../models/FWT_Products_Models_ProductModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -14,10 +14,10 @@ export class ProductService {
 
     /**
      * Gets all products
-     * @returns ProductModel Success
+     * @returns FWT_Products_Models_ProductModel Success
      * @throws ApiError
      */
-    public getProducts(): CancelablePromise<Array<ProductModel>> {
+    public getProducts(): CancelablePromise<Array<FWT_Products_Models_ProductModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/product',
@@ -27,14 +27,14 @@ export class ProductService {
     /**
      * Creates a new product or updates an existing product
      * To create a new product, set the product key to zero.  To update an existing product, set the product key to that product's key
-     * @returns ProductModel Success
+     * @returns FWT_Products_Models_ProductModel Success
      * @throws ApiError
      */
     public saveProduct({
 requestBody,
 }: {
-requestBody?: ProductModel,
-}): CancelablePromise<ProductModel> {
+requestBody?: FWT_Products_Models_ProductModel,
+}): CancelablePromise<FWT_Products_Models_ProductModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/product',
@@ -45,14 +45,14 @@ requestBody?: ProductModel,
 
     /**
      * Gets a product by key
-     * @returns ProductModel Success
+     * @returns FWT_Products_Models_ProductModel Success
      * @throws ApiError
      */
     public getProductByKey({
 productKey,
 }: {
 productKey: number,
-}): CancelablePromise<ProductModel> {
+}): CancelablePromise<FWT_Products_Models_ProductModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/product/{productKey}',
@@ -94,10 +94,10 @@ productKey: number,
 
     /**
      * Gets all product categories
-     * @returns ProductCategoryModel Success
+     * @returns FWT_Products_Models_ProductCategoryModel Success
      * @throws ApiError
      */
-    public getProductCategories(): CancelablePromise<Array<ProductCategoryModel>> {
+    public getProductCategories(): CancelablePromise<Array<FWT_Products_Models_ProductCategoryModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/product/category',
@@ -107,14 +107,14 @@ productKey: number,
     /**
      * Creates a new product category or updates an existing product category
      * To create a new product category, set the product category key to zero.  To update an existing product category, set the product category key to that product category's key
-     * @returns ProductCategoryModel Success
+     * @returns FWT_Products_Models_ProductCategoryModel Success
      * @throws ApiError
      */
     public saveProductCategory({
 requestBody,
 }: {
-requestBody?: ProductCategoryModel,
-}): CancelablePromise<ProductCategoryModel> {
+requestBody?: FWT_Products_Models_ProductCategoryModel,
+}): CancelablePromise<FWT_Products_Models_ProductCategoryModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/product/category',
@@ -125,14 +125,14 @@ requestBody?: ProductCategoryModel,
 
     /**
      * Gets a product category by key
-     * @returns ProductCategoryModel Success
+     * @returns FWT_Products_Models_ProductCategoryModel Success
      * @throws ApiError
      */
     public getProductCategoryByKey({
 productCategoryKey,
 }: {
 productCategoryKey: number,
-}): CancelablePromise<ProductCategoryModel> {
+}): CancelablePromise<FWT_Products_Models_ProductCategoryModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/product/category/{productCategoryKey}',
@@ -163,14 +163,14 @@ productCategoryKey: number,
 
     /**
      * Get product locations by product key
-     * @returns ProductLocationModel Success
+     * @returns FWT_Products_Models_ProductLocationModel Success
      * @throws ApiError
      */
     public getProductLocationsByProductKey({
 productKey,
 }: {
 productKey: number,
-}): CancelablePromise<Array<ProductLocationModel>> {
+}): CancelablePromise<Array<FWT_Products_Models_ProductLocationModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/product/pricing/location/{productKey}',
@@ -183,14 +183,14 @@ productKey: number,
     /**
      * Creates a new product location or updates an existing product location
      * To create a new product location, set the product location key to zero.  To update an existing product location, set the product location key to that product location's key
-     * @returns ProductLocationModel Success
+     * @returns FWT_Products_Models_ProductLocationModel Success
      * @throws ApiError
      */
     public saveProductLocation({
 requestBody,
 }: {
-requestBody?: ProductLocationModel,
-}): CancelablePromise<ProductLocationModel> {
+requestBody?: FWT_Products_Models_ProductLocationModel,
+}): CancelablePromise<FWT_Products_Models_ProductLocationModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/product/pricing/location',

@@ -1,10 +1,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BillingModeModel } from '../models/BillingModeModel';
-import type { CostTypeModel } from '../models/CostTypeModel';
-import type { SalespersonModel } from '../models/SalespersonModel';
-import type { TermsModel } from '../models/TermsModel';
+import type { FWT_Resources_Models_BillingModeModel } from '../models/FWT_Resources_Models_BillingModeModel';
+import type { FWT_Resources_Models_CostTypeModel } from '../models/FWT_Resources_Models_CostTypeModel';
+import type { FWT_Resources_Models_SalespersonModel } from '../models/FWT_Resources_Models_SalespersonModel';
+import type { FWT_Resources_Models_TermsModel } from '../models/FWT_Resources_Models_TermsModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -15,10 +15,10 @@ export class ResourcesService {
 
     /**
      * Gets all billing modes
-     * @returns BillingModeModel Success
+     * @returns FWT_Resources_Models_BillingModeModel Success
      * @throws ApiError
      */
-    public getBillingModes(): CancelablePromise<Array<BillingModeModel>> {
+    public getBillingModes(): CancelablePromise<Array<FWT_Resources_Models_BillingModeModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/billingmode',
@@ -28,14 +28,14 @@ export class ResourcesService {
     /**
      * Creates a new billing mode or updates an existing billingMode
      * To create a new billing mode, set the billing mode key to zero.  To update an existing billing mode, set the billing mode key to that billing mode's key
-     * @returns BillingModeModel Success
+     * @returns FWT_Resources_Models_BillingModeModel Success
      * @throws ApiError
      */
     public saveBillingMode({
 requestBody,
 }: {
-requestBody?: BillingModeModel,
-}): CancelablePromise<BillingModeModel> {
+requestBody?: FWT_Resources_Models_BillingModeModel,
+}): CancelablePromise<FWT_Resources_Models_BillingModeModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/resources/billingmode',
@@ -46,14 +46,14 @@ requestBody?: BillingModeModel,
 
     /**
      * Gets a billing mode by key
-     * @returns BillingModeModel Success
+     * @returns FWT_Resources_Models_BillingModeModel Success
      * @throws ApiError
      */
     public getBillingModeByKey({
 billingModeKey,
 }: {
 billingModeKey: number,
-}): CancelablePromise<BillingModeModel> {
+}): CancelablePromise<FWT_Resources_Models_BillingModeModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/billingmode/{billingModeKey}',
@@ -84,10 +84,10 @@ billingModeKey: number,
 
     /**
      * Gets all cost types
-     * @returns CostTypeModel Success
+     * @returns FWT_Resources_Models_CostTypeModel Success
      * @throws ApiError
      */
-    public getCostTypes(): CancelablePromise<Array<CostTypeModel>> {
+    public getCostTypes(): CancelablePromise<Array<FWT_Resources_Models_CostTypeModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/costtype',
@@ -97,14 +97,14 @@ billingModeKey: number,
     /**
      * Creates a new cost type or updates an existing costType
      * To create a new cost type, set the cost type key to zero.  To update an existing cost type, set the cost type key to that cost type's key
-     * @returns CostTypeModel Success
+     * @returns FWT_Resources_Models_CostTypeModel Success
      * @throws ApiError
      */
     public saveCostType({
 requestBody,
 }: {
-requestBody?: CostTypeModel,
-}): CancelablePromise<CostTypeModel> {
+requestBody?: FWT_Resources_Models_CostTypeModel,
+}): CancelablePromise<FWT_Resources_Models_CostTypeModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/resources/costtype',
@@ -115,14 +115,14 @@ requestBody?: CostTypeModel,
 
     /**
      * Gets a cost type by key
-     * @returns CostTypeModel Success
+     * @returns FWT_Resources_Models_CostTypeModel Success
      * @throws ApiError
      */
     public getCostTypeByKey({
 costTypeKey,
 }: {
 costTypeKey: number,
-}): CancelablePromise<CostTypeModel> {
+}): CancelablePromise<FWT_Resources_Models_CostTypeModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/costtype/{costTypeKey}',
@@ -153,10 +153,10 @@ costTypeKey: number,
 
     /**
      * Gets all sales people
-     * @returns SalespersonModel Success
+     * @returns FWT_Resources_Models_SalespersonModel Success
      * @throws ApiError
      */
-    public getSalespersons(): CancelablePromise<Array<SalespersonModel>> {
+    public getSalespersons(): CancelablePromise<Array<FWT_Resources_Models_SalespersonModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/salesperson',
@@ -166,14 +166,14 @@ costTypeKey: number,
     /**
      * Creates a new salesperson or updates an existing salesperson
      * To create a new salesperson, set the salesperson key to zero.  To update an existing salesperson, set the salesperson key to that salesperson's key
-     * @returns SalespersonModel Success
+     * @returns FWT_Resources_Models_SalespersonModel Success
      * @throws ApiError
      */
     public saveSalesperson({
 requestBody,
 }: {
-requestBody?: SalespersonModel,
-}): CancelablePromise<SalespersonModel> {
+requestBody?: FWT_Resources_Models_SalespersonModel,
+}): CancelablePromise<FWT_Resources_Models_SalespersonModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/resources/salesperson',
@@ -184,14 +184,14 @@ requestBody?: SalespersonModel,
 
     /**
      * Gets a salesperson by key
-     * @returns SalespersonModel Success
+     * @returns FWT_Resources_Models_SalespersonModel Success
      * @throws ApiError
      */
     public getSalespersonByKey({
 salespersonKey,
 }: {
 salespersonKey: number,
-}): CancelablePromise<SalespersonModel> {
+}): CancelablePromise<FWT_Resources_Models_SalespersonModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/salesperson/{salespersonKey}',
@@ -222,10 +222,10 @@ salespersonKey: number,
 
     /**
      * Gets all terms
-     * @returns TermsModel Success
+     * @returns FWT_Resources_Models_TermsModel Success
      * @throws ApiError
      */
-    public getTerms(): CancelablePromise<Array<TermsModel>> {
+    public getTerms(): CancelablePromise<Array<FWT_Resources_Models_TermsModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/terms',
@@ -235,14 +235,14 @@ salespersonKey: number,
     /**
      * Creates a new term or updates an existing term
      * To create a new term, set the term key to zero.  To update an existing term, set the term key to that term's key
-     * @returns TermsModel Success
+     * @returns FWT_Resources_Models_TermsModel Success
      * @throws ApiError
      */
     public saveTerm({
 requestBody,
 }: {
-requestBody?: TermsModel,
-}): CancelablePromise<TermsModel> {
+requestBody?: FWT_Resources_Models_TermsModel,
+}): CancelablePromise<FWT_Resources_Models_TermsModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/resources/terms',
@@ -253,14 +253,14 @@ requestBody?: TermsModel,
 
     /**
      * Gets a term by key
-     * @returns TermsModel Success
+     * @returns FWT_Resources_Models_TermsModel Success
      * @throws ApiError
      */
     public getTermByKey({
 termKey,
 }: {
 termKey: number,
-}): CancelablePromise<TermsModel> {
+}): CancelablePromise<FWT_Resources_Models_TermsModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/resources/terms/{termKey}',

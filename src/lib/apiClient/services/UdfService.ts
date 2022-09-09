@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { UDFModel } from '../models/UDFModel';
+import type { FWT_Domain_Models_UDFModel } from '../models/FWT_Domain_Models_UDFModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -12,10 +12,10 @@ export class UdfService {
 
     /**
      * Gets customer udfs
-     * @returns UDFModel Success
+     * @returns FWT_Domain_Models_UDFModel Success
      * @throws ApiError
      */
-    public getCustomerUdf(): CancelablePromise<UDFModel> {
+    public getCustomerUdf(): CancelablePromise<FWT_Domain_Models_UDFModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/udf/customer',
@@ -30,7 +30,7 @@ export class UdfService {
     public saveCustomerUdf({
 requestBody,
 }: {
-requestBody?: UDFModel,
+requestBody?: FWT_Domain_Models_UDFModel,
 }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
@@ -42,10 +42,10 @@ requestBody?: UDFModel,
 
     /**
      * Gets truck udfs
-     * @returns UDFModel Success
+     * @returns FWT_Domain_Models_UDFModel Success
      * @throws ApiError
      */
-    public getTruckUdf(): CancelablePromise<UDFModel> {
+    public getTruckUdf(): CancelablePromise<FWT_Domain_Models_UDFModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/udf/truck',
@@ -60,7 +60,7 @@ requestBody?: UDFModel,
     public saveTruckUdf({
 requestBody,
 }: {
-requestBody?: UDFModel,
+requestBody?: FWT_Domain_Models_UDFModel,
 }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
@@ -72,10 +72,10 @@ requestBody?: UDFModel,
 
     /**
      * Gets order udfs
-     * @returns UDFModel Success
+     * @returns FWT_Domain_Models_UDFModel Success
      * @throws ApiError
      */
-    public getOrderUdf(): CancelablePromise<UDFModel> {
+    public getOrderUdf(): CancelablePromise<FWT_Domain_Models_UDFModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/udf/order',
@@ -90,7 +90,7 @@ requestBody?: UDFModel,
     public saveOrderUdf({
 requestBody,
 }: {
-requestBody?: UDFModel,
+requestBody?: FWT_Domain_Models_UDFModel,
 }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
@@ -102,10 +102,10 @@ requestBody?: UDFModel,
 
     /**
      * Gets ticket udfs
-     * @returns UDFModel Success
+     * @returns FWT_Domain_Models_UDFModel Success
      * @throws ApiError
      */
-    public getTicketUdf(): CancelablePromise<UDFModel> {
+    public getTicketUdf(): CancelablePromise<FWT_Domain_Models_UDFModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/udf/ticket',
@@ -120,7 +120,7 @@ requestBody?: UDFModel,
     public saveTicketUdf({
 requestBody,
 }: {
-requestBody?: UDFModel,
+requestBody?: FWT_Domain_Models_UDFModel,
 }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
@@ -132,14 +132,14 @@ requestBody?: UDFModel,
 
     /**
      * Gets device udfs by device key
-     * @returns UDFModel Success
+     * @returns FWT_Domain_Models_UDFModel Success
      * @throws ApiError
      */
     public getDeviceUdf({
 deviceKey,
 }: {
 deviceKey: number,
-}): CancelablePromise<UDFModel> {
+}): CancelablePromise<FWT_Domain_Models_UDFModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/udf/device/{deviceKey}',
@@ -159,7 +159,7 @@ deviceKey,
 requestBody,
 }: {
 deviceKey: number,
-requestBody?: UDFModel,
+requestBody?: FWT_Domain_Models_UDFModel,
 }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
