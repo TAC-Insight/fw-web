@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_NoteDoc_Models_DocumentModel } from '../models/FWT_NoteDoc_Models_DocumentModel';
-import type { FWT_NoteDoc_Models_NoteModel } from '../models/FWT_NoteDoc_Models_NoteModel';
+import type { DocumentModel } from '../models/DocumentModel';
+import type { NoteModel } from '../models/NoteModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -13,7 +13,7 @@ export class NotesAndDocumentsService {
 
     /**
      * Gets documents related to specified entity
-     * @returns FWT_NoteDoc_Models_DocumentModel Success
+     * @returns DocumentModel Success
      * @throws ApiError
      */
     public getDocuments({
@@ -28,7 +28,7 @@ documentType?: string,
  * Key of the entity the document is for (eg order key, custome key etc)
  */
 documentTypeKey?: number,
-}): CancelablePromise<Array<FWT_NoteDoc_Models_DocumentModel>> {
+}): CancelablePromise<Array<DocumentModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/document',
@@ -42,14 +42,14 @@ documentTypeKey?: number,
     /**
      * Creates a new document or updates an existing document
      * To create a new document, set the document key to zero.  To update an existing document, set the document key to that document's key
-     * @returns FWT_NoteDoc_Models_DocumentModel Success
+     * @returns DocumentModel Success
      * @throws ApiError
      */
     public saveDocument({
 requestBody,
 }: {
-requestBody?: FWT_NoteDoc_Models_DocumentModel,
-}): CancelablePromise<FWT_NoteDoc_Models_DocumentModel> {
+requestBody?: DocumentModel,
+}): CancelablePromise<DocumentModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/document',
@@ -60,14 +60,14 @@ requestBody?: FWT_NoteDoc_Models_DocumentModel,
 
     /**
      * Gets a document by key
-     * @returns FWT_NoteDoc_Models_DocumentModel Success
+     * @returns DocumentModel Success
      * @throws ApiError
      */
     public getDocumentByKey({
 documentKey,
 }: {
 documentKey: number,
-}): CancelablePromise<FWT_NoteDoc_Models_DocumentModel> {
+}): CancelablePromise<DocumentModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/document/{documentKey}',
@@ -110,7 +110,7 @@ documentKey: number,
 
     /**
      * Gets notes related to specified entity
-     * @returns FWT_NoteDoc_Models_NoteModel Success
+     * @returns NoteModel Success
      * @throws ApiError
      */
     public getNotes({
@@ -125,7 +125,7 @@ noteType?: string,
  * Key of the entity the note is for (eg order key, custome key etc)
  */
 noteTypeKey?: number,
-}): CancelablePromise<Array<FWT_NoteDoc_Models_NoteModel>> {
+}): CancelablePromise<Array<NoteModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/note',
@@ -139,14 +139,14 @@ noteTypeKey?: number,
     /**
      * Creates a new note or updates an existing note
      * To create a new note, set the note key to zero.  To update an existing note, set the note key to that note's key
-     * @returns FWT_NoteDoc_Models_NoteModel Success
+     * @returns NoteModel Success
      * @throws ApiError
      */
     public saveNote({
 requestBody,
 }: {
-requestBody?: FWT_NoteDoc_Models_NoteModel,
-}): CancelablePromise<FWT_NoteDoc_Models_NoteModel> {
+requestBody?: NoteModel,
+}): CancelablePromise<NoteModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/note',
@@ -157,14 +157,14 @@ requestBody?: FWT_NoteDoc_Models_NoteModel,
 
     /**
      * Gets a note by key
-     * @returns FWT_NoteDoc_Models_NoteModel Success
+     * @returns NoteModel Success
      * @throws ApiError
      */
     public getNoteByKey({
 noteKey,
 }: {
 noteKey: number,
-}): CancelablePromise<FWT_NoteDoc_Models_NoteModel> {
+}): CancelablePromise<NoteModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/note/{noteKey}',

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_LoadTickets_Models_LoadTicketQueryModel } from '../models/FWT_LoadTickets_Models_LoadTicketQueryModel';
+import type { LoadTicketQueryModel } from '../models/LoadTicketQueryModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -11,7 +11,7 @@ export class LoadTicketService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
-     * @returns FWT_LoadTickets_Models_LoadTicketQueryModel Success
+     * @returns LoadTicketQueryModel Success
      * @throws ApiError
      */
     public query({
@@ -52,7 +52,7 @@ invoiceNum?: number,
 mpTicketNumber?: number,
 poNumber?: string,
 invoiceHistoryKey?: number,
-}): CancelablePromise<Array<FWT_LoadTickets_Models_LoadTicketQueryModel>> {
+}): CancelablePromise<Array<LoadTicketQueryModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/loadticket/query',

@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_TaxCodes_Models_TaxCodeGroupModel } from '../models/FWT_TaxCodes_Models_TaxCodeGroupModel';
-import type { FWT_TaxCodes_Models_TaxCodeModel } from '../models/FWT_TaxCodes_Models_TaxCodeModel';
-import type { FWT_TaxCodes_Models_TaxSubcodeModel } from '../models/FWT_TaxCodes_Models_TaxSubcodeModel';
+import type { TaxCodeGroupModel } from '../models/TaxCodeGroupModel';
+import type { TaxCodeModel } from '../models/TaxCodeModel';
+import type { TaxSubcodeModel } from '../models/TaxSubcodeModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -14,10 +14,10 @@ export class TaxCodeService {
 
     /**
      * Gets tax codes
-     * @returns FWT_TaxCodes_Models_TaxCodeModel Success
+     * @returns TaxCodeModel Success
      * @throws ApiError
      */
-    public getTaxCodes(): CancelablePromise<Array<FWT_TaxCodes_Models_TaxCodeModel>> {
+    public getTaxCodes(): CancelablePromise<Array<TaxCodeModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/taxcode',
@@ -27,14 +27,14 @@ export class TaxCodeService {
     /**
      * Creates a new taxCode or updates an existing taxCode
      * To create a new taxCode, set the taxCode key to zero.  To update an existing taxCode, set the taxCode key to that taxCode's key
-     * @returns FWT_TaxCodes_Models_TaxCodeModel Success
+     * @returns TaxCodeModel Success
      * @throws ApiError
      */
     public saveTaxCode({
 requestBody,
 }: {
-requestBody?: FWT_TaxCodes_Models_TaxCodeModel,
-}): CancelablePromise<FWT_TaxCodes_Models_TaxCodeModel> {
+requestBody?: TaxCodeModel,
+}): CancelablePromise<TaxCodeModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/taxcode',
@@ -45,14 +45,14 @@ requestBody?: FWT_TaxCodes_Models_TaxCodeModel,
 
     /**
      * Gets a tax code by key
-     * @returns FWT_TaxCodes_Models_TaxCodeModel Success
+     * @returns TaxCodeModel Success
      * @throws ApiError
      */
     public getTaxCodeByKey({
 taxCodeKey,
 }: {
 taxCodeKey: number,
-}): CancelablePromise<FWT_TaxCodes_Models_TaxCodeModel> {
+}): CancelablePromise<TaxCodeModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/taxcode/{taxCodeKey}',
@@ -83,10 +83,10 @@ taxCodeKey: number,
 
     /**
      * Gets all tax sub codes
-     * @returns FWT_TaxCodes_Models_TaxSubcodeModel Success
+     * @returns TaxSubcodeModel Success
      * @throws ApiError
      */
-    public getTaxSubcodes(): CancelablePromise<Array<FWT_TaxCodes_Models_TaxSubcodeModel>> {
+    public getTaxSubcodes(): CancelablePromise<Array<TaxSubcodeModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/taxcode/subcode',
@@ -96,14 +96,14 @@ taxCodeKey: number,
     /**
      * Creates a new tax sub code or updates an existing tax sub code
      * To create a new tax sub code, set the tax sub code key to zero.  To update an existing tax sub code, set the tax sub code key to that tax sub code's key
-     * @returns FWT_TaxCodes_Models_TaxSubcodeModel Success
+     * @returns TaxSubcodeModel Success
      * @throws ApiError
      */
     public saveTaxSubcode({
 requestBody,
 }: {
-requestBody?: FWT_TaxCodes_Models_TaxSubcodeModel,
-}): CancelablePromise<FWT_TaxCodes_Models_TaxSubcodeModel> {
+requestBody?: TaxSubcodeModel,
+}): CancelablePromise<TaxSubcodeModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/taxcode/subcode',
@@ -114,14 +114,14 @@ requestBody?: FWT_TaxCodes_Models_TaxSubcodeModel,
 
     /**
      * Gets a tax sub code by key
-     * @returns FWT_TaxCodes_Models_TaxSubcodeModel Success
+     * @returns TaxSubcodeModel Success
      * @throws ApiError
      */
     public getTaxSubcodeByKey({
 taxSubcodeKey,
 }: {
 taxSubcodeKey: number,
-}): CancelablePromise<FWT_TaxCodes_Models_TaxSubcodeModel> {
+}): CancelablePromise<TaxSubcodeModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/taxcode/subcode/{taxSubcodeKey}',
@@ -152,10 +152,10 @@ taxSubcodeKey: number,
 
     /**
      * Gets all tax code groups
-     * @returns FWT_TaxCodes_Models_TaxCodeGroupModel Success
+     * @returns TaxCodeGroupModel Success
      * @throws ApiError
      */
-    public getTaxCodeGroups(): CancelablePromise<Array<FWT_TaxCodes_Models_TaxCodeGroupModel>> {
+    public getTaxCodeGroups(): CancelablePromise<Array<TaxCodeGroupModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/taxcode/group',
@@ -165,14 +165,14 @@ taxSubcodeKey: number,
     /**
      * Creates a new tax code group or updates an existing tax code group
      * To create a new tax code group, set the tax code group key to zero.  To update an existing tax code group, set the tax code group key to that tax code group's key
-     * @returns FWT_TaxCodes_Models_TaxCodeGroupModel Success
+     * @returns TaxCodeGroupModel Success
      * @throws ApiError
      */
     public saveTaxCodeGroup({
 requestBody,
 }: {
-requestBody?: FWT_TaxCodes_Models_TaxCodeGroupModel,
-}): CancelablePromise<FWT_TaxCodes_Models_TaxCodeGroupModel> {
+requestBody?: TaxCodeGroupModel,
+}): CancelablePromise<TaxCodeGroupModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/taxcode/group',
@@ -183,14 +183,14 @@ requestBody?: FWT_TaxCodes_Models_TaxCodeGroupModel,
 
     /**
      * Gets a tax code group by key
-     * @returns FWT_TaxCodes_Models_TaxCodeGroupModel Success
+     * @returns TaxCodeGroupModel Success
      * @throws ApiError
      */
     public getTaxCodeGroupByKey({
 groupKey,
 }: {
 groupKey: number,
-}): CancelablePromise<FWT_TaxCodes_Models_TaxCodeGroupModel> {
+}): CancelablePromise<TaxCodeGroupModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/taxcode/group/{groupKey}',
@@ -277,14 +277,14 @@ taxCodeKey: number,
 
     /**
      * Gets all tax codes for a group
-     * @returns FWT_TaxCodes_Models_TaxCodeModel Success
+     * @returns TaxCodeModel Success
      * @throws ApiError
      */
     public getTaxCodesByGroupKey({
 groupKey,
 }: {
 groupKey: number,
-}): CancelablePromise<Array<FWT_TaxCodes_Models_TaxCodeModel>> {
+}): CancelablePromise<Array<TaxCodeModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/taxcode/group/{groupKey}/taxcodes',

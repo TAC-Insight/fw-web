@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_Regions_Models_LocationModel } from '../models/FWT_Regions_Models_LocationModel';
+import type { LocationModel } from '../models/LocationModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -12,7 +12,7 @@ export class LocationService {
 
     /**
      * Gets all locations
-     * @returns FWT_Regions_Models_LocationModel Success
+     * @returns LocationModel Success
      * @throws ApiError
      */
     public getLocations({
@@ -22,7 +22,7 @@ regionKey,
  * Returns only locations for the specified region key
  */
 regionKey?: number,
-}): CancelablePromise<Array<FWT_Regions_Models_LocationModel>> {
+}): CancelablePromise<Array<LocationModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/location',
@@ -35,14 +35,14 @@ regionKey?: number,
     /**
      * Creates a new location or updates an existing location
      * To create a new location, set the location key to zero.  To update an existing location, set the location key to that location's key
-     * @returns FWT_Regions_Models_LocationModel Success
+     * @returns LocationModel Success
      * @throws ApiError
      */
     public saveLocation({
 requestBody,
 }: {
-requestBody?: FWT_Regions_Models_LocationModel,
-}): CancelablePromise<FWT_Regions_Models_LocationModel> {
+requestBody?: LocationModel,
+}): CancelablePromise<LocationModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/location',
@@ -53,14 +53,14 @@ requestBody?: FWT_Regions_Models_LocationModel,
 
     /**
      * Gets a location by key
-     * @returns FWT_Regions_Models_LocationModel Success
+     * @returns LocationModel Success
      * @throws ApiError
      */
     public getLocationByKey({
 locationKey,
 }: {
 locationKey: number,
-}): CancelablePromise<FWT_Regions_Models_LocationModel> {
+}): CancelablePromise<LocationModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/location/{locationKey}',

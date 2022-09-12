@@ -1,10 +1,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_Haulers_Models_TruckAssignmentModel } from '../models/FWT_Haulers_Models_TruckAssignmentModel';
-import type { FWT_Haulers_Models_TruckImageModel } from '../models/FWT_Haulers_Models_TruckImageModel';
-import type { FWT_Haulers_Models_TruckModel } from '../models/FWT_Haulers_Models_TruckModel';
-import type { FWT_Haulers_Models_TruckTypeModel } from '../models/FWT_Haulers_Models_TruckTypeModel';
+import type { TruckAssignmentModel } from '../models/TruckAssignmentModel';
+import type { TruckImageModel } from '../models/TruckImageModel';
+import type { TruckModel } from '../models/TruckModel';
+import type { TruckTypeModel } from '../models/TruckTypeModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -16,7 +16,7 @@ export class TruckService {
     /**
      * Gets trucks
      * Leaving hauler key, region key and active null will return all trucks
-     * @returns FWT_Haulers_Models_TruckModel Success
+     * @returns TruckModel Success
      * @throws ApiError
      */
     public getTrucks({
@@ -36,7 +36,7 @@ regionKey?: number,
  * Setting active will return all trucks that are either active (true) or inactive (false)
  */
 active?: boolean,
-}): CancelablePromise<Array<FWT_Haulers_Models_TruckModel>> {
+}): CancelablePromise<Array<TruckModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/truck',
@@ -51,14 +51,14 @@ active?: boolean,
     /**
      * Creates a new truck or updates an existing truck
      * To create a new truck, set the truck key to zero.  To update an existing truck, set the truck key to that truck's key
-     * @returns FWT_Haulers_Models_TruckModel Success
+     * @returns TruckModel Success
      * @throws ApiError
      */
     public saveTruck({
 requestBody,
 }: {
-requestBody?: FWT_Haulers_Models_TruckModel,
-}): CancelablePromise<FWT_Haulers_Models_TruckModel> {
+requestBody?: TruckModel,
+}): CancelablePromise<TruckModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/truck',
@@ -69,14 +69,14 @@ requestBody?: FWT_Haulers_Models_TruckModel,
 
     /**
      * Gets a truck by key
-     * @returns FWT_Haulers_Models_TruckModel Success
+     * @returns TruckModel Success
      * @throws ApiError
      */
     public getTruckByKey({
 truckKey,
 }: {
 truckKey: number,
-}): CancelablePromise<FWT_Haulers_Models_TruckModel> {
+}): CancelablePromise<TruckModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/truck/{truckKey}',
@@ -107,14 +107,14 @@ truckKey: number,
 
     /**
      * Gets all images for a truck
-     * @returns FWT_Haulers_Models_TruckImageModel Success
+     * @returns TruckImageModel Success
      * @throws ApiError
      */
     public getTruckImagesByKey({
 truckKey,
 }: {
 truckKey: number,
-}): CancelablePromise<Array<FWT_Haulers_Models_TruckImageModel>> {
+}): CancelablePromise<Array<TruckImageModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/truck/{truckKey}/truckimage',
@@ -127,7 +127,7 @@ truckKey: number,
     /**
      * Creates a new truck image or updates an existing truck image
      * To create a new truck image, set the truck image key to zero.  To update an existing truck image, set the truck image key to that image's key
-     * @returns FWT_Haulers_Models_TruckImageModel Success
+     * @returns TruckImageModel Success
      * @throws ApiError
      */
     public saveTruckImage({
@@ -135,8 +135,8 @@ truckKey,
 requestBody,
 }: {
 truckKey: number,
-requestBody?: FWT_Haulers_Models_TruckImageModel,
-}): CancelablePromise<FWT_Haulers_Models_TruckImageModel> {
+requestBody?: TruckImageModel,
+}): CancelablePromise<TruckImageModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/truck/{truckKey}/truckimage',
@@ -172,10 +172,10 @@ truckImageKey: number,
 
     /**
      * Gets all truck assignments
-     * @returns FWT_Haulers_Models_TruckAssignmentModel Success
+     * @returns TruckAssignmentModel Success
      * @throws ApiError
      */
-    public getTruckAssignments(): CancelablePromise<Array<FWT_Haulers_Models_TruckAssignmentModel>> {
+    public getTruckAssignments(): CancelablePromise<Array<TruckAssignmentModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/truck/assignment',
@@ -236,10 +236,10 @@ requestBody?: Array<number>,
 
     /**
      * Gets all truck types
-     * @returns FWT_Haulers_Models_TruckTypeModel Success
+     * @returns TruckTypeModel Success
      * @throws ApiError
      */
-    public getTruckTypes(): CancelablePromise<Array<FWT_Haulers_Models_TruckTypeModel>> {
+    public getTruckTypes(): CancelablePromise<Array<TruckTypeModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/truck/type',
@@ -249,14 +249,14 @@ requestBody?: Array<number>,
     /**
      * Creates a new truck type or updates an existing truck type
      * To create a new truck type, set the truck type key to zero.  To update an existing truck type, set the truck type key to that truck type's key
-     * @returns FWT_Haulers_Models_TruckTypeModel Success
+     * @returns TruckTypeModel Success
      * @throws ApiError
      */
     public saveTruckType({
 requestBody,
 }: {
-requestBody?: FWT_Haulers_Models_TruckTypeModel,
-}): CancelablePromise<FWT_Haulers_Models_TruckTypeModel> {
+requestBody?: TruckTypeModel,
+}): CancelablePromise<TruckTypeModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/truck/type',
@@ -267,14 +267,14 @@ requestBody?: FWT_Haulers_Models_TruckTypeModel,
 
     /**
      * Gets a truck type by key
-     * @returns FWT_Haulers_Models_TruckTypeModel Success
+     * @returns TruckTypeModel Success
      * @throws ApiError
      */
     public getTruckTypeByKey({
 truckTypeKey,
 }: {
 truckTypeKey: number,
-}): CancelablePromise<FWT_Haulers_Models_TruckTypeModel> {
+}): CancelablePromise<TruckTypeModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/truck/type/{truckTypeKey}',

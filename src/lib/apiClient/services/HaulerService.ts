@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_Haulers_Models_HaulerModel } from '../models/FWT_Haulers_Models_HaulerModel';
+import type { HaulerModel } from '../models/HaulerModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -13,7 +13,7 @@ export class HaulerService {
     /**
      * Gets haulers
      * Leaving all parameters null will return all haulers
-     * @returns FWT_Haulers_Models_HaulerModel Success
+     * @returns HaulerModel Success
      * @throws ApiError
      */
     public getHaulers({
@@ -33,7 +33,7 @@ dispatchingEnabled?: boolean,
  * When set, will only return haulers based on type (External or Internal)
  */
 haulerType?: string,
-}): CancelablePromise<Array<FWT_Haulers_Models_HaulerModel>> {
+}): CancelablePromise<Array<HaulerModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/hauler',
@@ -48,14 +48,14 @@ haulerType?: string,
     /**
      * Creates a new hauler or updates an existing hauler
      * To create a new hauler, set the hauler key to zero.  To update an existing hauler, set the hauler key to that hauler's key
-     * @returns FWT_Haulers_Models_HaulerModel Success
+     * @returns HaulerModel Success
      * @throws ApiError
      */
     public saveHauler({
 requestBody,
 }: {
-requestBody?: FWT_Haulers_Models_HaulerModel,
-}): CancelablePromise<FWT_Haulers_Models_HaulerModel> {
+requestBody?: HaulerModel,
+}): CancelablePromise<HaulerModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/hauler',
@@ -66,14 +66,14 @@ requestBody?: FWT_Haulers_Models_HaulerModel,
 
     /**
      * Gets a hauler by key
-     * @returns FWT_Haulers_Models_HaulerModel Success
+     * @returns HaulerModel Success
      * @throws ApiError
      */
     public getHaulerByKey({
 haulerKey,
 }: {
 haulerKey: number,
-}): CancelablePromise<FWT_Haulers_Models_HaulerModel> {
+}): CancelablePromise<HaulerModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/hauler/{haulerKey}',

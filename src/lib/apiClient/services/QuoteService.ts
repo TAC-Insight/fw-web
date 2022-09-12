@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_Domain_Models_CodeValueModel } from '../models/FWT_Domain_Models_CodeValueModel';
-import type { FWT_Quotes_Models_QuoteDashboardModel } from '../models/FWT_Quotes_Models_QuoteDashboardModel';
-import type { FWT_Quotes_Models_QuoteModel } from '../models/FWT_Quotes_Models_QuoteModel';
+import type { CodeValueModel } from '../models/CodeValueModel';
+import type { QuoteDashboardModel } from '../models/QuoteDashboardModel';
+import type { QuoteModel } from '../models/QuoteModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -15,7 +15,7 @@ export class QuoteService {
     /**
      * Gets quotes
      * Leaving all parameters null will return all quotes
-     * @returns FWT_Quotes_Models_QuoteModel Success
+     * @returns QuoteModel Success
      * @throws ApiError
      */
     public quoteQuery({
@@ -40,7 +40,7 @@ projectKey?: number,
  * Quote status: A: Active, C: Closed, I:Inactve
  */
 status?: string,
-}): CancelablePromise<Array<FWT_Quotes_Models_QuoteModel>> {
+}): CancelablePromise<Array<QuoteModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quote',
@@ -56,14 +56,14 @@ status?: string,
     /**
      * Creates a new quote or updates an existing quote
      * To create a new quote, set the quote key to zero.  To update an existing quote, set the quote key to that quote's key
-     * @returns FWT_Quotes_Models_QuoteModel Success
+     * @returns QuoteModel Success
      * @throws ApiError
      */
     public saveQuote({
 requestBody,
 }: {
-requestBody?: FWT_Quotes_Models_QuoteModel,
-}): CancelablePromise<FWT_Quotes_Models_QuoteModel> {
+requestBody?: QuoteModel,
+}): CancelablePromise<QuoteModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/quote',
@@ -74,14 +74,14 @@ requestBody?: FWT_Quotes_Models_QuoteModel,
 
     /**
      * Gets a quote by key
-     * @returns FWT_Quotes_Models_QuoteModel Success
+     * @returns QuoteModel Success
      * @throws ApiError
      */
     public getQuoteByKey({
 quoteKey,
 }: {
 quoteKey: number,
-}): CancelablePromise<FWT_Quotes_Models_QuoteModel> {
+}): CancelablePromise<QuoteModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quote/key/{quoteKey}',
@@ -93,14 +93,14 @@ quoteKey: number,
 
     /**
      * Gets a quote by quote number
-     * @returns FWT_Quotes_Models_QuoteModel Success
+     * @returns QuoteModel Success
      * @throws ApiError
      */
     public getQuoteByNumber({
 quoteNumber,
 }: {
 quoteNumber: number,
-}): CancelablePromise<FWT_Quotes_Models_QuoteModel> {
+}): CancelablePromise<QuoteModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quote/number/{quoteNumber}',
@@ -131,7 +131,7 @@ quoteKey: number,
 
     /**
      * Creates a new quote as a copy of the specified quote
-     * @returns FWT_Quotes_Models_QuoteModel Success
+     * @returns QuoteModel Success
      * @throws ApiError
      */
     public copyQuote({
@@ -141,7 +141,7 @@ quoteKey,
  * Quote key of quote to copy
  */
 quoteKey: number,
-}): CancelablePromise<FWT_Quotes_Models_QuoteModel> {
+}): CancelablePromise<QuoteModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/quote/{quoteKey}/copy',
@@ -174,7 +174,7 @@ quoteKey: number,
     }
 
     /**
-     * @returns FWT_Quotes_Models_QuoteDashboardModel Success
+     * @returns QuoteDashboardModel Success
      * @throws ApiError
      */
     public dashboardQuery({
@@ -191,7 +191,7 @@ productKey?: number,
 salespersonKey?: number,
 fromDate?: string,
 toDate?: string,
-}): CancelablePromise<Array<FWT_Quotes_Models_QuoteDashboardModel>> {
+}): CancelablePromise<Array<QuoteDashboardModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quote/dashboard',
@@ -208,10 +208,10 @@ toDate?: string,
 
     /**
      * Returns order directions
-     * @returns FWT_Domain_Models_CodeValueModel Success
+     * @returns CodeValueModel Success
      * @throws ApiError
      */
-    public getQuoteDirections(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
+    public getQuoteDirections(): CancelablePromise<Array<CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quote/directions',
@@ -220,10 +220,10 @@ toDate?: string,
 
     /**
      * Returns quote pay types
-     * @returns FWT_Domain_Models_CodeValueModel Success
+     * @returns CodeValueModel Success
      * @throws ApiError
      */
-    public getQuotePayTypes(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
+    public getQuotePayTypes(): CancelablePromise<Array<CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quote/paytypes',
@@ -232,10 +232,10 @@ toDate?: string,
 
     /**
      * Returns order statuses
-     * @returns FWT_Domain_Models_CodeValueModel Success
+     * @returns CodeValueModel Success
      * @throws ApiError
      */
-    public getQuoteStatuses(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
+    public getQuoteStatuses(): CancelablePromise<Array<CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/quote/statuses',

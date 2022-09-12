@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_Domain_Models_CodeValueModel } from '../models/FWT_Domain_Models_CodeValueModel';
-import type { FWT_Orders_Models_OrderModel } from '../models/FWT_Orders_Models_OrderModel';
+import type { CodeValueModel } from '../models/CodeValueModel';
+import type { OrderModel } from '../models/OrderModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -14,7 +14,7 @@ export class OrderService {
     /**
      * Gets orders
      * Leaving all parameters null will return all orders
-     * @returns FWT_Orders_Models_OrderModel Success
+     * @returns OrderModel Success
      * @throws ApiError
      */
     public orderQuery({
@@ -64,7 +64,7 @@ openOrder?: boolean,
  * Setting to true will only returnn orders set to use proof of delivery
  */
 pod?: boolean,
-}): CancelablePromise<Array<FWT_Orders_Models_OrderModel>> {
+}): CancelablePromise<Array<OrderModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/order',
@@ -85,14 +85,14 @@ pod?: boolean,
     /**
      * Creates a new order or updates an existing order
      * To create a new order, set the order key to zero.  To update an existing order, set the order key to that order's key
-     * @returns FWT_Orders_Models_OrderModel Success
+     * @returns OrderModel Success
      * @throws ApiError
      */
     public saveOrder({
 requestBody,
 }: {
-requestBody?: FWT_Orders_Models_OrderModel,
-}): CancelablePromise<FWT_Orders_Models_OrderModel> {
+requestBody?: OrderModel,
+}): CancelablePromise<OrderModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/order',
@@ -103,14 +103,14 @@ requestBody?: FWT_Orders_Models_OrderModel,
 
     /**
      * Gets a order by key
-     * @returns FWT_Orders_Models_OrderModel Success
+     * @returns OrderModel Success
      * @throws ApiError
      */
     public getOrderByKey({
 orderKey,
 }: {
 orderKey: number,
-}): CancelablePromise<FWT_Orders_Models_OrderModel> {
+}): CancelablePromise<OrderModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/order/key/{orderKey}',
@@ -122,14 +122,14 @@ orderKey: number,
 
     /**
      * Gets a order by order number
-     * @returns FWT_Orders_Models_OrderModel Success
+     * @returns OrderModel Success
      * @throws ApiError
      */
     public getOrderByNumber({
 orderNumber,
 }: {
 orderNumber: number,
-}): CancelablePromise<Array<FWT_Orders_Models_OrderModel>> {
+}): CancelablePromise<Array<OrderModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/order/number/{orderNumber}',
@@ -160,10 +160,10 @@ orderKey: number,
 
     /**
      * Returns order directions
-     * @returns FWT_Domain_Models_CodeValueModel Success
+     * @returns CodeValueModel Success
      * @throws ApiError
      */
-    public getOrderDirections(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
+    public getOrderDirections(): CancelablePromise<Array<CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/order/directions',
@@ -172,10 +172,10 @@ orderKey: number,
 
     /**
      * Returns order pay types
-     * @returns FWT_Domain_Models_CodeValueModel Success
+     * @returns CodeValueModel Success
      * @throws ApiError
      */
-    public getOrderPayTypes(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
+    public getOrderPayTypes(): CancelablePromise<Array<CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/order/paytypes',
@@ -184,10 +184,10 @@ orderKey: number,
 
     /**
      * Returns order statuses
-     * @returns FWT_Domain_Models_CodeValueModel Success
+     * @returns CodeValueModel Success
      * @throws ApiError
      */
-    public getOrderStatuses(): CancelablePromise<Array<FWT_Domain_Models_CodeValueModel>> {
+    public getOrderStatuses(): CancelablePromise<Array<CodeValueModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/order/statuses',

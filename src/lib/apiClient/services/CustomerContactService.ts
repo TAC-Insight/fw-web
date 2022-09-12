@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_Customers_Models_CustomerContactModel } from '../models/FWT_Customers_Models_CustomerContactModel';
+import type { CustomerContactModel } from '../models/CustomerContactModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -12,14 +12,14 @@ export class CustomerContactService {
 
     /**
      * Gets customer contacts for specified customer
-     * @returns FWT_Customers_Models_CustomerContactModel Success
+     * @returns CustomerContactModel Success
      * @throws ApiError
      */
     public getCustomerContacts({
 customerKey,
 }: {
 customerKey: number,
-}): CancelablePromise<Array<FWT_Customers_Models_CustomerContactModel>> {
+}): CancelablePromise<Array<CustomerContactModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/customercontact/customer/{customerKey}',
@@ -31,14 +31,14 @@ customerKey: number,
 
     /**
      * Gets a customer contact by key
-     * @returns FWT_Customers_Models_CustomerContactModel Success
+     * @returns CustomerContactModel Success
      * @throws ApiError
      */
     public getCustomerContactByKey({
 contactKey,
 }: {
 contactKey: number,
-}): CancelablePromise<FWT_Customers_Models_CustomerContactModel> {
+}): CancelablePromise<CustomerContactModel> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/customercontact/{contactKey}',
@@ -70,14 +70,14 @@ contactKey: number,
     /**
      * Creates a new customer contact or updates an existing customer contact
      * To create a new customer contact, set the contact key to zero.  To update an existing customer contact, set the contact key to that contact's key
-     * @returns FWT_Customers_Models_CustomerContactModel Success
+     * @returns CustomerContactModel Success
      * @throws ApiError
      */
     public saveCustomerContact({
 requestBody,
 }: {
-requestBody?: FWT_Customers_Models_CustomerContactModel,
-}): CancelablePromise<FWT_Customers_Models_CustomerContactModel> {
+requestBody?: CustomerContactModel,
+}): CancelablePromise<CustomerContactModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/customercontact',

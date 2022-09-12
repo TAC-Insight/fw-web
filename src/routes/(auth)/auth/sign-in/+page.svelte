@@ -5,11 +5,11 @@
 	import Input from '$lib/components/Input.svelte';
 	import { createToast } from '$lib/stores/toastStore';
 	import { http } from '$lib/http';
-	import type { FWT_Authentication_Models_LoginResponse } from '$lib/apiClient';
+	import type { LoginResponse } from '$lib/apiClient';
 
 	let userID = '';
 	let code = '';
-	let session: FWT_Authentication_Models_LoginResponse;
+	let session: LoginResponse;
 	let isCodeSent = false;
 	let isLoading = false;
 

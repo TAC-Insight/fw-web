@@ -1,10 +1,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { FWT_Identity_Models_CreateUserModel } from '../models/FWT_Identity_Models_CreateUserModel';
-import type { FWT_Identity_Models_RoleModel } from '../models/FWT_Identity_Models_RoleModel';
-import type { FWT_Identity_Models_UpdateUserModel } from '../models/FWT_Identity_Models_UpdateUserModel';
-import type { FWT_Identity_Models_UserModel } from '../models/FWT_Identity_Models_UserModel';
+import type { CreateUserModel } from '../models/CreateUserModel';
+import type { RoleModel } from '../models/RoleModel';
+import type { UpdateUserModel } from '../models/UpdateUserModel';
+import type { UserModel } from '../models/UserModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -15,10 +15,10 @@ export class IdentityService {
 
     /**
      * Gets all users
-     * @returns FWT_Identity_Models_UserModel Success
+     * @returns UserModel Success
      * @throws ApiError
      */
-    public getUsers(): CancelablePromise<Array<FWT_Identity_Models_UserModel>> {
+    public getUsers(): CancelablePromise<Array<UserModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/identity/user',
@@ -34,7 +34,7 @@ export class IdentityService {
     public createUser({
 requestBody,
 }: {
-requestBody?: FWT_Identity_Models_CreateUserModel,
+requestBody?: CreateUserModel,
 }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
@@ -53,7 +53,7 @@ requestBody?: FWT_Identity_Models_CreateUserModel,
     public updateUser({
 requestBody,
 }: {
-requestBody?: FWT_Identity_Models_UpdateUserModel,
+requestBody?: UpdateUserModel,
 }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
@@ -65,10 +65,10 @@ requestBody?: FWT_Identity_Models_UpdateUserModel,
 
     /**
      * Gets all roles
-     * @returns FWT_Identity_Models_RoleModel Success
+     * @returns RoleModel Success
      * @throws ApiError
      */
-    public getRoles(): CancelablePromise<Array<FWT_Identity_Models_RoleModel>> {
+    public getRoles(): CancelablePromise<Array<RoleModel>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/identity/role',
@@ -78,14 +78,14 @@ requestBody?: FWT_Identity_Models_UpdateUserModel,
     /**
      * Creates/Updates a role
      * To create a new role, set the role key to zero.  To update an existing role, set the role key to that role's key
-     * @returns FWT_Identity_Models_RoleModel Success
+     * @returns RoleModel Success
      * @throws ApiError
      */
     public saveRole({
 requestBody,
 }: {
-requestBody?: FWT_Identity_Models_RoleModel,
-}): CancelablePromise<FWT_Identity_Models_RoleModel> {
+requestBody?: RoleModel,
+}): CancelablePromise<RoleModel> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/identity/role',
