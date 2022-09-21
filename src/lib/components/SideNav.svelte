@@ -8,7 +8,6 @@
 	import SideNavMenuItems from './SideNavMenuItems.svelte';
 	import { createToast } from '$lib/stores/toastStore';
 	import { destroySessionAndRedirect } from '$lib/auth';
-	import { AuthService } from '$lib/apiClient';
 	import { http } from '$lib/http';
 </script>
 

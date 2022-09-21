@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { hasEntityPermission, hasTenantPermission, isAdminOrSuperUser } from '$lib/auth';
 
-	import { navStore } from '$lib/stores/navStore';
-	import { sessionStore } from '$lib/stores/sessionStore';
+	import { navFavoritesStore, navStore } from '$lib/stores/navStore';
 	import CashIcon from './icons/CashIcon.svelte';
 	import ChartSquareBarIcon from './icons/ChartSquareBarIcon.svelte';
 	import ClipboardIcon from './icons/ClipboardIcon.svelte';
@@ -14,6 +13,7 @@
 	import HomeIcon from './icons/HomeIcon.svelte';
 	import LocationMarkerIcon from './icons/LocationMarkerIcon.svelte';
 	import ShieldCheckIcon from './icons/ShieldCheckIcon.svelte';
+	import Star from './icons/Star.svelte';
 	import TicketIcon from './icons/TicketIcon.svelte';
 	import TruckIcon from './icons/TruckIcon.svelte';
 	import NavLink from './NavLink.svelte';
@@ -25,6 +25,20 @@
 		<HomeIcon class="h-4 w-4" />
 		<span class="ml-2">Dashboard</span>
 	</NavLink>
+
+	<!-- Favorites -->
+	<SideNavMenuItem
+		open={$navStore.isFavoritesOpen}
+		on:click={() => ($navStore.isFavoritesOpen = !$navStore.isFavoritesOpen)}
+	>
+		<span slot="title">Favorites</span>
+		<span slot="icon"><Star class="text-yellow-300" fill="currentColor" /></span>
+		<div slot="links">
+			{#each $navFavoritesStore as fav}
+				<NavLink href={fav.href}>{fav.title}</NavLink>
+			{/each}
+		</div>
+	</SideNavMenuItem>
 
 	<!-- Resources -->
 	<SideNavMenuItem

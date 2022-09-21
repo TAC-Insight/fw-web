@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { autoFocus } from '$lib/actions';
-	export let type: 'text' | 'password' = 'text';
+	export let type: 'text' | 'password' | 'date' = 'text';
 	export let value: string | number = '';
+	export let defaultValue: string | number = '';
 	export let label: string = '';
 	export let placeholder: string = '';
 	export let required: boolean = false;
@@ -39,6 +40,7 @@
 	<input
 		{id}
 		{placeholder}
+		value={defaultValue}
 		type={computedType}
 		use:autoFocus={autofocus}
 		on:input={handleInput}

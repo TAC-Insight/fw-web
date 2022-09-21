@@ -1,5 +1,5 @@
-<script lang="ts">
+<script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
 </script>
 
-<PageHeader title="Orders" />
+<PageHeader title="Ticket Query" />

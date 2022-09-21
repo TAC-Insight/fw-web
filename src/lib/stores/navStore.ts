@@ -3,6 +3,7 @@ import { writable } from 'svelte/store';
 
 interface NavStore {
 	isNavOpen?: boolean;
+	isFavoritesOpen?: boolean;
 	isResourcesOpen?: boolean;
 	isTrucksOpen?: boolean;
 	isQuotesOpen?: boolean;
@@ -25,4 +26,14 @@ export const navStore = writable<NavStore>(
 
 if (browser) {
 	navStore.subscribe((val) => localStorage.setItem('navStore', JSON.stringify(val)));
+}
+
+export const navFavoritesStore = writable<{ title: string; href: string }[]>(
+	JSON.parse(browser ? localStorage.getItem('navFavoritesStore') ?? '[]' : '[]')
+);
+
+if (browser) {
+	navFavoritesStore.subscribe((val) =>
+		localStorage.setItem('navFavoritesStore', JSON.stringify(val))
+	);
 }
