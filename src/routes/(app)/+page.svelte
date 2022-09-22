@@ -23,7 +23,7 @@
 		columnDefs: [
 			{ field: 'ticketNumber', aggFunc: 'count' },
 			{ field: 'ticketDate' },
-			{ field: 'netWeight' },
+			{ field: 'netWeight', aggFunc: 'sum' },
 			{ field: 'regionName' },
 			{ field: 'locationName' },
 			{ field: 'customerID' },
@@ -105,7 +105,7 @@
 	});
 </script>
 
-<div class="flex flex-col space-y-2">
+<div class="flex flex-col space-y-2 h-screen">
 	<section class="flex space-x-2">
 		<h1 class="text-3xl font-bold">Dashboard</h1>
 		<button class="bg-teal-500 px-4 rounded text-white font-bold" on:click={query}>Refresh</button>
@@ -144,7 +144,7 @@
 		</div>
 	</section>
 
-	<section>
-		<div bind:this={gridRef} class="ag-theme-alpine h-96 w-full" />
+	<section class="h-full">
+		<div bind:this={gridRef} class="ag-theme-alpine h-full w-full" />
 	</section>
 </div>
