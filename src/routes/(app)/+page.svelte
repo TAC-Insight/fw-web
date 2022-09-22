@@ -62,39 +62,31 @@
 	};
 
 	// Card aggregate functions
-	$: countOfTickets = tickets.length;
-	$: sumOfNet = tickets
-		.reduce((prevValue, ticket) => {
-			return prevValue + (ticket.netWeight ?? 0);
-		}, 0)
-		.toFixed(2);
-	$: countOfOrders = () => {
-		let count = new Set();
+	$: countOfTickets = tickets.length.toLocaleString();
+	$: sumOfNet = parseFloat(
+		tickets
+			.reduce((prevValue, ticket) => {
+				return prevValue + (ticket.netWeight ?? 0);
+			}, 0)
+			.toFixed(2)
+	).toLocaleString();
+	$: distinctCounts = () => {
+		let customers = new Set();
+		let orders = new Set();
+		let haulers = new Set();
+		let trucks = new Set();
 		tickets.forEach((ticket) => {
-			count.add(ticket.orderKey);
+			customers.add(ticket.customerKey);
+			orders.add(ticket.orderKey);
+			haulers.add(ticket.haulerID);
+			trucks.add(ticket.truckKey);
 		});
-		return count.size;
-	};
-	$: countOfCustomers = () => {
-		let count = new Set();
-		tickets.forEach((ticket) => {
-			count.add(ticket.customerKey);
-		});
-		return count.size;
-	};
-	$: countOfHaulers = () => {
-		let count = new Set();
-		tickets.forEach((ticket) => {
-			count.add(ticket.haulerID);
-		});
-		return count.size;
-	};
-	$: countOfTrucks = () => {
-		let count = new Set();
-		tickets.forEach((ticket) => {
-			count.add(ticket.truckKey);
-		});
-		return count.size;
+		return {
+			customers: customers.size.toLocaleString(),
+			orders: orders.size.toLocaleString(),
+			haulers: haulers.size.toLocaleString(),
+			trucks: trucks.size.toLocaleString()
+		};
 	};
 
 	onMount(async () => {
@@ -136,19 +128,19 @@
 
 		<div class="bg-slate-300 p-4 text-center rounded-xl">
 			<h1 class="text-2xl font-bold mb-2">Orders</h1>
-			<p class="text-xl font-semibold">{countOfOrders()}</p>
+			<p class="text-xl font-semibold">{distinctCounts().orders}</p>
 		</div>
 		<div class="bg-slate-300 p-4 text-center rounded-xl">
 			<h1 class="text-2xl font-bold mb-2">Customers</h1>
-			<p class="text-xl font-semibold">{countOfCustomers()}</p>
+			<p class="text-xl font-semibold">{distinctCounts().customers}</p>
 		</div>
 		<div class="bg-slate-300 p-4 text-center rounded-xl">
 			<h1 class="text-2xl font-bold mb-2">Haulers</h1>
-			<p class="text-xl font-semibold">{countOfHaulers()}</p>
+			<p class="text-xl font-semibold">{distinctCounts().haulers}</p>
 		</div>
 		<div class="bg-slate-300 p-4 text-center rounded-xl">
 			<h1 class="text-2xl font-bold mb-2">Trucks</h1>
-			<p class="text-xl font-semibold">{countOfTrucks()}</p>
+			<p class="text-xl font-semibold">{distinctCounts().trucks}</p>
 		</div>
 	</section>
 
